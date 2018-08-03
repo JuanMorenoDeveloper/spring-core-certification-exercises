@@ -8,36 +8,39 @@
     <properties>
 
 		<!-- Generic properties -->
-		<java.version>1.6</java.version>
+		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		
 		<!-- Web -->
-		<jsp.version>2.2</jsp.version>
+		<jsp.version>2.3.1</jsp.version>
 		<jstl.version>1.2</jstl.version>
-		<servlet.version>2.5</servlet.version>
+		<servlet.version>3.1.0</servlet.version>
 		
 		<!-- Spring -->
-		<spring-framework.version>4.1.6.RELEASE</spring-framework.version>
+		<spring-framework.version>5.0.8.RELEASE</spring-framework.version>
 
 		<!-- Spring Security -->
-		<spring-security.version>3.2.7.RELEASE</spring-security.version>
+		<spring-security.version>5.0.7.RELEASE</spring-security.version>
 		
 		<!-- Hibernate / JPA -->
-		<hibernate.version>4.2.1.Final</hibernate.version>
+		<hibernate.version>5.1.14.Final</hibernate.version>
 
 		<!-- Logging -->
-		<logback.version>1.0.13</logback.version>
-		<slf4j.version>1.7.5</slf4j.version>
+		<logback.version>1.2.3</logback.version>
+		<slf4j.version>1.7.25</slf4j.version>
 
 		<!-- Test -->
-		<junit.version>4.11</junit.version>	
+		<junit.version>4.12</junit.version>	
 		
 		<!-- JMS activemq.version -->
-		<activemq.version>5.11.1</activemq.version>
+		<activemq.version>5.15.4</activemq.version>
 		
 		<!-- jackson json JSON Processing API -->
-		<jackson.databind-version>2.2.3</jackson.databind-version>
+		<jackson.databind-version>2.9.6</jackson.databind-version>
+		
+		<hsqldb.version>2.4.1</hsqldb.version>
+		<jaxb-api.version>2.3.0</jaxb-api.version>
 		
 	</properties>
 	
@@ -58,13 +61,13 @@
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
+			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>${jsp.version}</version>
 			<scope>provided</scope>
 		</dependency>
@@ -136,7 +139,7 @@
 		<dependency>
            <groupId>org.hsqldb</groupId>
            <artifactId>hsqldb</artifactId>
-           <version>2.3.2</version>
+           <version>${hsqldb.version}</version>
         </dependency>
 
 		<!-- Spring Security -->
@@ -185,7 +188,7 @@
         <dependency>
 		  <groupId>javax.xml.bind</groupId>
 		  <artifactId>jaxb-api</artifactId>
-		  <version>2.1</version>
+		  <version>${jaxb-api.version}</version>
 		</dependency>
 		  
 	</dependencies>	

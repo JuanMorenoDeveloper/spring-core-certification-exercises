@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.proitc</groupId>
+  <artifactId>spring-core-certification-exercises</artifactId>
+  <version>0.0.1</version>
+
+  <packaging>pom</packaging>
+  <name>spring-core-certification-exercises</name>
+  <description>Parent for spring core certification exercises</description>
+
+  <properties>
+    <!-- Project configuration -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <!-- Plugins versions -->
+    <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+  </properties>
+  
+ <modules>
+    <module>spring</module>
+    <module>spring-web</module>
+  </modules>
+  <profiles>
+    <!-->mvn -P quality-check verify-->
+    <profile>
+      <id>quality-check</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+	  <build>
+		<plugins>
+		  <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-checkstyle-plugin</artifactId>
+			<version>3.0.0</version>
+			<dependencies>
+			  <dependency>
+				<groupId>com.proitc</groupId>
+				<artifactId>build-tools</artifactId>
+				<version>0.0.1</version>
+			  </dependency>
+			</dependencies>
+		  </plugin>
+		</plugins>
+	  </build>
+  </profile>
+  </profiles>
+  </project>

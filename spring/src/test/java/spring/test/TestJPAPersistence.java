@@ -1,24 +1,22 @@
 package spring.test;
 
 
-import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import java.util.List;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
-
 import spring.persistence.User;
 import spring.persistence.UserManager;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:application-context-persistence.xml"})
 @Transactional
 public class TestJPAPersistence {
@@ -26,8 +24,8 @@ public class TestJPAPersistence {
   @Autowired
   private ApplicationContext context;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeAll
+  public static void setUp() throws Exception {
     new EmbeddedDatabaseBuilder().build();
   }
 
@@ -36,9 +34,9 @@ public class TestJPAPersistence {
 
     System.out.println("testQueryfindAllUsersJPA is called");
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager);
     List<User> users = userManager.queryfindAllUsersJPA();
-    Assert.assertNotNull(users);
+    assertThat(users);
     for (User user : users) {
       System.out.println("IDUSER : " + user.getIdUser());
       System.out.println("USERNAME : " + user.getUsername());
@@ -53,7 +51,7 @@ public class TestJPAPersistence {
 
     System.out.println("testQueryCountTAllUsersJPA is called");
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     int count = userManager.queryCountAllUsersJPA();
     System.out.println("Users count: " + count);
 
@@ -64,7 +62,7 @@ public class TestJPAPersistence {
 
     System.out.println("testFindByIdUSer is called");
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     User user = userManager.queryFindByIdUser(2);
     System.out.println("User: " + user.getUsername());
   }
@@ -73,11 +71,12 @@ public class TestJPAPersistence {
   public void testInsertUserByIdUser() {
     System.out.println("testInsertUserByIdUser is called");
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     userManager.insertUserByIdUser("testInsert@outlook.com", "123456", true);
 
     List<User> users = userManager.queryfindAllUsersJPA();
-    Assert.assertNotNull(users);
+    assertThat(users).isNotNull();
+    ;
 
     for (User user : users) {
       System.out.println("IDUSER : " + user.getIdUser());
@@ -91,10 +90,10 @@ public class TestJPAPersistence {
   public void testDeleteUserByIdUser() {
     System.out.println("testDeleteUserByIdUser is called");
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     userManager.deleteUserByIdUser(2);
     List<User> users = userManager.queryfindAllUsersJPA();
-    Assert.assertNotNull(users);
+    assertThat(users).isNotNull();
 
     for (User user : users) {
       System.out.println("IDUSER : " + user.getIdUser());

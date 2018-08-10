@@ -25,8 +25,6 @@
     <!-- Hibernate / JPA -->
     <hibernate.version>5.1.14.Final</hibernate.version>
 
-    <!-- Test -->
-    <junit.version>4.12</junit.version>
     <!-- AspectJ -->
     <aspectj.version>1.8.13</aspectj.version>
     <hsqldb.version>2.4.1</hsqldb.version>
@@ -91,25 +89,12 @@
       <artifactId>hibernate-entitymanager</artifactId>
       <version>${hibernate.version}</version>
     </dependency>
-    <!--
-      <dependency>
-    <groupId>org.hibernate.javax.persistence</groupId>
-    <artifactId>hibernate-jpa-2.0-api</artifactId>
-    <version>1.0.1.Final</version>
-  </dependency> -->
 
     <!-- Test Artifacts -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>${spring-framework.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -125,6 +110,40 @@
       <version>${hsqldb.version}</version>
     </dependency>
 
+    <!--Testing dependencies-->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
 
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj-core.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <!-- JUnit 5 requires Surefire version 2.22.0 or higher -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>

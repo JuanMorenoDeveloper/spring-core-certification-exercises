@@ -1,18 +1,18 @@
 package spring.test;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import spring.bean.MailService;
 
 //How are you going to create an ApplicationContext in an integration test or a JUnit test? 
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:application-context.xml"})
 public class TestMailService /*implements ApplicationContextAware*/ {
 
@@ -29,7 +29,7 @@ public class TestMailService /*implements ApplicationContextAware*/ {
   @Test
   public void testEmail() {
     MailService mailService = context.getBean(MailService.class);
-    Assert.assertNotNull(mailService);
+    assertThat(mailService).isNotNull();
     mailService.sendMessage("Test Mail Service Email");
 
   }

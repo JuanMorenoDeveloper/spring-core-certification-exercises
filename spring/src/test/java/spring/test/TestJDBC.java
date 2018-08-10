@@ -1,25 +1,24 @@
 package spring.test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
-
 import spring.jdbc.transactions.orm.DBLog;
 import spring.jdbc.transactions.orm.DBLogService;
 import spring.jdbc.transactions.orm.User;
 import spring.jdbc.transactions.orm.UserManager;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:application-context-jdbc.xml"})
 public class TestJDBC {
 
@@ -32,7 +31,7 @@ public class TestJDBC {
   public void testDBLogServiceLogMethod() {
 
     DBLogService dbLogService = context.getBean(DBLogService.class);
-    Assert.assertNotNull(dbLogService);
+    assertThat(dbLogService).isNotNull();
     dbLogService.log("1 MainAppJDBCTransactionsORM TEST LOG INSERT SRTING IN LOG TABLE");
     dbLogService.log("2 MainAppJDBCTransactionsORM TEST LOG INSERT SRTING IN LOG TABLE");
     dbLogService.log("3 MainAppJDBCTransactionsORM TEST LOG INSERT SRTING IN LOG TABLE");
@@ -51,9 +50,9 @@ public class TestJDBC {
   public void testUserManagerQueryUserWithInternalRowMapper() {
 
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     User u = userManager.queryUserWithInternalRowMapper(2);
-    Assert.assertNotNull(u);
+    assertThat(u).isNotNull();
     System.out.println("testUserManagerQueryUserWithInternalRowMapper: " + u.getUsername());
   }
 
@@ -61,7 +60,7 @@ public class TestJDBC {
   public void testUserManagerUpdateUserName() {
 
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     User u = new User();
     u.setUsername("test@outlook.com");
     userManager.updateUserName(u, "testspring@outlook.com");
@@ -73,7 +72,7 @@ public class TestJDBC {
   public void testUserManagerAddUSER() {
 
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     User user = new User();
     user.setUsername("testuser12345@outlook.com");
     user.setPassword("12345");
@@ -86,7 +85,7 @@ public class TestJDBC {
   public void testUserManagerCountAllUsers() {
 
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     System.out.println(userManager.countAllUsers());
 
   }
@@ -95,7 +94,7 @@ public class TestJDBC {
   public void testUserManagerLogAllUserInfo() {
 
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     userManager.logAllUserInfo();
 
   }
@@ -104,7 +103,7 @@ public class TestJDBC {
   public void testUserManagerQueryUserWithResultSetExtractor() {
 
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     List<User> testUsers = userManager.queryUserWithResultSetExtractor();
     for (User u : testUsers) {
       System.out.println("Test users");
@@ -118,7 +117,7 @@ public class TestJDBC {
   public void testQueryForListOfUsers() {
     System.out.println("testQueryForListOfUsers");
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     List<Map<String, Object>> users = userManager.queryForListOfUsers();
     System.out.println(users);
     for (Map<String, Object> row : users) {
@@ -131,7 +130,7 @@ public class TestJDBC {
   public void testQueryForMapUser() {
     System.out.println("testQueryForMapUser");
     UserManager userManager = context.getBean(UserManager.class);
-    Assert.assertNotNull(userManager);
+    assertThat(userManager).isNotNull();
     Map<String, Object> user = userManager.queryForMapUser("2");
     System.out.println(user);
     System.out.println("MAP VALUE: " + user.get("IDUSER"));

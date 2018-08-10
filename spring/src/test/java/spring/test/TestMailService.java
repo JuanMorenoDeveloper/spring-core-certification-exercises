@@ -12,12 +12,12 @@ import spring.bean.MailService;
 
 //How are you going to create an ApplicationContext in an integration test or a JUnit test? 
 
-@RunWith(SpringJUnit4ClassRunner.class)  
-@ContextConfiguration(locations={"classpath:application-context.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:application-context.xml"})
 public class TestMailService /*implements ApplicationContextAware*/ {
-	
-	@Autowired
-	private ApplicationContext context;
+
+  @Autowired
+  private ApplicationContext context;
 
 	/*public void setApplicationContext(ApplicationContext context)
 			throws BeansException {
@@ -25,14 +25,14 @@ public class TestMailService /*implements ApplicationContextAware*/ {
 		Assert.assertNotNull(mailService);
 	}
 	*/
-	 
-	@Test
-	public void testEmail() {
-		MailService mailService = context.getBean(MailService.class);
-		Assert.assertNotNull(mailService);
-		mailService.sendMessage("Test Mail Service Email");
-		
-	}
 
-	
+  @Test
+  public void testEmail() {
+    MailService mailService = context.getBean(MailService.class);
+    Assert.assertNotNull(mailService);
+    mailService.sendMessage("Test Mail Service Email");
+
+  }
+
+
 }

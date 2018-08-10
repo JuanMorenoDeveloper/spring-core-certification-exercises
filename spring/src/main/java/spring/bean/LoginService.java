@@ -6,29 +6,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginService {
 
-	
-	private DatabaseService databaseService;	
-	private LogService logService;
-	
-	@Autowired
-	public LoginService(LogService logService) {
-		this.logService = logService;
-	}
 
-	public DatabaseService getDatabaseService() {
-		return databaseService;
-	}
+  private DatabaseService databaseService;
+  private LogService logService;
 
-	@Autowired
-	public void setDatabaseService(DatabaseService databaseService) {
-		this.databaseService = databaseService;
-	}
+  @Autowired
+  public LoginService(LogService logService) {
+    this.logService = logService;
+  }
 
-	public LogService getLogService() {
-		return logService;
-	}
+  public DatabaseService getDatabaseService() {
+    return databaseService;
+  }
 
-	
-	
-	
+  @Autowired
+  public void setDatabaseService(DatabaseService databaseService) {
+    this.databaseService = databaseService;
+  }
+
+  public LogService getLogService() {
+    return logService;
+  }
+
+
 }

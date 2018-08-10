@@ -7,24 +7,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class RegisterService {
 
-	// @Autowired and @Resource provide dependency injection to private fields
-	@Autowired
-	@Qualifier("DBLogService")
-	private Log log;
-	
-	public boolean registerUser(User user) {
-		System.out.println("RegisterService registerUser(User u) is called");
-		return true;
-	}
+  // @Autowired and @Resource provide dependency injection to private fields
+  @Autowired
+  @Qualifier("DBLogService")
+  private Log log;
 
-	public Log getLog() {
-		return log;
-	}
+  public boolean registerUser(User user) {
+    System.out.println("RegisterService registerUser(User u) is called");
+    return true;
+  }
 
-	public void setLog(Log log) {
-		this.log = log;
-	}
+  public Log getLog() {
+    return log;
+  }
 
-	
-	
+  public void setLog(Log log) {
+    this.log = log;
+  }
+
+
 }

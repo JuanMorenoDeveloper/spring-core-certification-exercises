@@ -21,56 +21,59 @@ import spring.bean.UserManager;
 @Controller
 public class AdminRestController {
 
-	@Autowired
-	private RestTemplate restTemplate;
+  @Autowired
+  private RestTemplate restTemplate;
 
-	@Autowired
-	private UserManager userManager;
+  @Autowired
+  private UserManager userManager;
 
-	@Autowired
-	private DBLogService dbLogService;
+  @Autowired
+  private DBLogService dbLogService;
 
-	
-	@RequestMapping(value = "/md5/text/{text}", method = RequestMethod.GET)
-	public @ResponseBody String md5String(
-			@PathVariable(value = "text") String text) {
 
-		// fortmat JSON http://md5.jsontest.com/?text=example_text
-		ResponseEntity<String> response = restTemplate.getForEntity(
-				"http://md5.jsontest.com/?text={text}", String.class, text);
+  @RequestMapping(value = "/md5/text/{text}", method = RequestMethod.GET)
+  public @ResponseBody
+  String md5String(
+    @PathVariable(value = "text") String text) {
 
-		System.out.println("AdminRestController md5String return response: "
-				+ response);
-		return response.toString();
-	}
+    // fortmat JSON http://md5.jsontest.com/?text=example_text
+    ResponseEntity<String> response = restTemplate.getForEntity(
+      "http://md5.jsontest.com/?text={text}", String.class, text);
 
-	@RequestMapping(value = "/getAllUsersJSON", method = RequestMethod.GET)
-	public @ResponseBody List<User> getAllUsersJSON() {
+    System.out.println("AdminRestController md5String return response: "
+      + response);
+    return response.toString();
+  }
 
-		List<User> users = null;
-		try {
-			users = userManager.queryUserWithResultSetExtractor();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+  @RequestMapping(value = "/getAllUsersJSON", method = RequestMethod.GET)
+  public @ResponseBody
+  List<User> getAllUsersJSON() {
 
-		System.out.println(users);
-		return users;
-	}
-	
-	@RequestMapping(value = "/getAllDBLogsXML", method = RequestMethod.GET)
-	public @ResponseBody DBLogs getAllDBLogsXML() {
+    List<User> users = null;
+    try {
+      users = userManager.queryUserWithResultSetExtractor();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
-		List<DBLog> dbLogList = null;
-		try {
-			dbLogList = dbLogService.queryAllDBLogs();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println(dbLogList);
-		DBLogs dbLogs = new DBLogs();
-		dbLogs.setLogList(dbLogList);
-		return dbLogs;
-	}
+    System.out.println(users);
+    return users;
+  }
+
+  @RequestMapping(value = "/getAllDBLogsXML", method = RequestMethod.GET)
+  public @ResponseBody
+  DBLogs getAllDBLogsXML() {
+
+    List<DBLog> dbLogList = null;
+    try {
+      dbLogList = dbLogService.queryAllDBLogs();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    System.out.println(dbLogList);
+    DBLogs dbLogs = new DBLogs();
+    dbLogs.setLogList(dbLogList);
+    return dbLogs;
+  }
 
 }

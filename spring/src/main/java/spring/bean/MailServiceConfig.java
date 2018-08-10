@@ -1,26 +1,25 @@
 package spring.bean;
 
 public class MailServiceConfig {
-	private boolean active;
-	private String maxHourlyEmailLimit;	
 
-	public boolean isActive() {
-		return active;
-	}
+  private boolean active;
+  private String maxHourlyEmailLimit;
 
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+  public boolean isActive() {
+    return active;
+  }
 
-	public String getMaxHourlyEmailLimit() {
-		return maxHourlyEmailLimit;
-	}
+  public void setActive(boolean active) {
+    this.active = active;
+  }
 
-	public void setMaxHourlyEmailLimit(String maxHourlyEmailLimit) {
-		this.maxHourlyEmailLimit = maxHourlyEmailLimit;
-	}
+  public String getMaxHourlyEmailLimit() {
+    return maxHourlyEmailLimit;
+  }
 
-	
-	
-	
+  public void setMaxHourlyEmailLimit(String maxHourlyEmailLimit) {
+    this.maxHourlyEmailLimit = maxHourlyEmailLimit;
+  }
+
+
 }

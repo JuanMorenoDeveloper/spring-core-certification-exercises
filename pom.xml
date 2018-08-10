@@ -18,7 +18,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-	<!-- Plugins versions -->
+    <!-- Plugins versions -->
     <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
     <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
@@ -28,8 +28,8 @@
     <checkstyle.version>8.11</checkstyle.version>
     <maven.jacoco.plugin.version>0.8.1</maven.jacoco.plugin.version>
   </properties>
-  
- <modules>
+
+  <modules>
     <module>spring</module>
     <module>spring-web</module>
   </modules>
@@ -40,7 +40,7 @@
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
-	  <build>
+      <build>
         <plugins>
           <plugin>
             <!--mvn checkstyle:checkstyle-->
@@ -164,6 +164,6 @@
           </plugin>
         </plugins>
       </build>
-  </profile>
+    </profile>
   </profiles>
-  </project>
+</project>

@@ -18,34 +18,34 @@ import spring.bean.User;
 // <context:component-scan base-package="spring.controller" />
 @Controller
 public class RegisterController {
-	
-	  @Autowired
-	  private RegisterService registerService;
-	  
-	  @RequestMapping(value="/registeruser", method=RequestMethod.POST)
-	  public ModelAndView register(
-			  @RequestParam(required=false,defaultValue="") String email,
-			  @RequestParam(required=false,defaultValue="") String password,
-			  HttpServletRequest request, HttpServletResponse response)
-	    throws Exception
-	  {
-		  
-	    System.out.println("RegisterController register is called");
-	    System.out.println("RegisterController register email: "  + email);
-	    System.out.println("RegisterController register email: "  + password);
-    
-	    User user = new User();
-	    user.setUsername(email);
-	    user.setPassword(password);
-	    
-	    boolean result = registerService.registerUser(user);
-	    
-	    if (result)
-	    return new ModelAndView("success","message", "Successful registration");
-	    else
-	    return new ModelAndView("error","message", "Error while registration");
-	    
-	  }
-	 
+
+  @Autowired
+  private RegisterService registerService;
+
+  @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
+  public ModelAndView register(
+    @RequestParam(required = false, defaultValue = "") String email,
+    @RequestParam(required = false, defaultValue = "") String password,
+    HttpServletRequest request, HttpServletResponse response)
+    throws Exception {
+
+    System.out.println("RegisterController register is called");
+    System.out.println("RegisterController register email: " + email);
+    System.out.println("RegisterController register email: " + password);
+
+    User user = new User();
+    user.setUsername(email);
+    user.setPassword(password);
+
+    boolean result = registerService.registerUser(user);
+
+    if (result) {
+      return new ModelAndView("success", "message", "Successful registration");
+    } else {
+      return new ModelAndView("error", "message", "Error while registration");
+    }
+
+  }
+
 
 }

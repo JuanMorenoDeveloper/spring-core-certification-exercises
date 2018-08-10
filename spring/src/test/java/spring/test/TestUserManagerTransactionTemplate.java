@@ -10,20 +10,21 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import spring.jdbc.transactions.orm.UserManagerTransactionTemplate;
 
-@RunWith(SpringJUnit4ClassRunner.class)  
-@ContextConfiguration(locations={"classpath:application-context-jdbc.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:application-context-jdbc.xml"})
 public class TestUserManagerTransactionTemplate {
 
-	@Autowired
-	private ApplicationContext context;
-	
-	@Test
-	public void testDoItInTransactionUserManager() {
+  @Autowired
+  private ApplicationContext context;
 
-		UserManagerTransactionTemplate userManagerTransactionTemplate = context.getBean(UserManagerTransactionTemplate.class);	    
-		Assert.assertNotNull(userManagerTransactionTemplate);
-		userManagerTransactionTemplate.doItInTransactionUserManager();			
-		
-	}
-	
+  @Test
+  public void testDoItInTransactionUserManager() {
+
+    UserManagerTransactionTemplate userManagerTransactionTemplate = context
+      .getBean(UserManagerTransactionTemplate.class);
+    Assert.assertNotNull(userManagerTransactionTemplate);
+    userManagerTransactionTemplate.doItInTransactionUserManager();
+
+  }
+
 }

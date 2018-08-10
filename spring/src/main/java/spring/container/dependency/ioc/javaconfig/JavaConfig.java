@@ -29,27 +29,30 @@ import spring.util.ComplexBeanFactoryBeanImplementation;
  */
 
 
-@Configuration //let the Spring Framework knows this class is used as Configuration like it is done in application-context.xml file
-@ComponentScan(basePackages= {"spring.bean","spring.aspect"}) //components under packages will be scanned automatically with Spring Framework
+@Configuration
+//let the Spring Framework knows this class is used as Configuration like it is done in application-context.xml file
+@ComponentScan(basePackages = {"spring.bean", "spring.aspect"})
+//components under packages will be scanned automatically with Spring Framework
 //@ComponentScan(basePackages= {"spring.bean","other.packages"})
-@PropertySource("classpath:util.properties") 
+@PropertySource("classpath:util.properties")
 //This is used to point util.properties file
 //xml version is <context:property-placeholder location="classpath:util.properties"/>  
 @EnableAspectJAutoProxy
 public class JavaConfig {
-	
-	@Bean
-	//@Lazy
-	@Scope("singleton") // Scopes are singleton (default), prototype, request, session and global-session
-	public MailService mailService() { //default bean id is mailService
-		MailService mailService = new MailService();
-		mailService.setMailServer("smtp.gmail.com");
-		mailService.setProtocol("smtp");
-		mailService.setPort("9999");
-		return mailService;
-	}
 
-	//Can you use @Bean together with @Profile? 
+  @Bean
+  //@Lazy
+  @Scope("singleton")
+  // Scopes are singleton (default), prototype, request, session and global-session
+  public MailService mailService() { //default bean id is mailService
+    MailService mailService = new MailService();
+    mailService.setMailServer("smtp.gmail.com");
+    mailService.setProtocol("smtp");
+    mailService.setPort("9999");
+    return mailService;
+  }
+
+  //Can you use @Bean together with @Profile?
 
 	/*@Bean	
 	@Profile("development")
@@ -63,33 +66,33 @@ public class JavaConfig {
 		return dataSource;
 	}
 	*/
-	
-	@Bean	
-	//@Profile("production")
-	@Scope("singleton") 
-	public DataSource dataSource() { //default bean id is dataSource
-		DataSource dataSource = new DataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://127.0.0.1/");
-		dataSource.setUsername("production username");
-		dataSource.setPassword("production password");
-		return dataSource;
-	}
-	
-	//FactoryBean implementation
-    @Bean
-    public ComplexBeanFactoryBeanImplementation complexBean(){
-    	return new ComplexBeanFactoryBeanImplementation();
-    }
-	
-	//This bean is used for configuring PropertySourcesPlaceholderConfigurer
-	/* XML sample equivalent 
-	 * <context:property-placeholder location="classpath:util.properties" />	 	 
-	 */
-	@Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-	
+
+  @Bean
+  //@Profile("production")
+  @Scope("singleton")
+  public DataSource dataSource() { //default bean id is dataSource
+    DataSource dataSource = new DataSource();
+    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+    dataSource.setUrl("jdbc:mysql://127.0.0.1/");
+    dataSource.setUsername("production username");
+    dataSource.setPassword("production password");
+    return dataSource;
+  }
+
+  //FactoryBean implementation
+  @Bean
+  public ComplexBeanFactoryBeanImplementation complexBean() {
+    return new ComplexBeanFactoryBeanImplementation();
+  }
+
+  //This bean is used for configuring PropertySourcesPlaceholderConfigurer
+  /* XML sample equivalent
+   * <context:property-placeholder location="classpath:util.properties" />
+   */
+  @Bean
+  public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+    return new PropertySourcesPlaceholderConfigurer();
+  }
+
 
 }

@@ -8,29 +8,32 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="LOG")
+@Table(name = "LOG")
 public class DBLog {
-	
-	@Id
-	@GeneratedValue
-	@Column(name="IDLOG")
-	private int IDLOG;
-	
-	@Column(name="LOGSTRING")
-	private String LOGSTRING;
-	
-	public int getIDLOG() {
-		return IDLOG;
-	}
-	public void setIDLOG(int iDLOG) {
-		IDLOG = iDLOG;
-	}
-	public String getLOGSTRING() {
-		return LOGSTRING;
-	}
-	public void setLOGSTRING(String lOGSTRING) {
-		LOGSTRING = lOGSTRING;
-	}
 
-	
+  @Id
+  @GeneratedValue
+  @Column(name = "IDLOG")
+  private int IDLOG;
+
+  @Column(name = "LOGSTRING")
+  private String LOGSTRING;
+
+  public int getIDLOG() {
+    return IDLOG;
+  }
+
+  public void setIDLOG(int iDLOG) {
+    IDLOG = iDLOG;
+  }
+
+  public String getLOGSTRING() {
+    return LOGSTRING;
+  }
+
+  public void setLOGSTRING(String lOGSTRING) {
+    LOGSTRING = lOGSTRING;
+  }
+
+
 }

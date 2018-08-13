@@ -42,7 +42,7 @@
     <jdbc:script location="classpath:test-data.sql"/>
   </jdbc:initialize-database>
 
-  <bean id="databaseService" class="spring.jdbc.transactions.orm.DatabaseService" scope="singleton">
+  <bean id="databaseService" class="com.proitc.jdbc.transactions.orm.DatabaseService" scope="singleton">
     <constructor-arg ref="dataSource"/>
   </bean>
 
@@ -56,11 +56,11 @@
   </bean>
 
   <!-- DBLogService -->
-  <bean id="dbLogService" class="spring.jdbc.transactions.orm.DBLogService">
+  <bean id="dbLogService" class="com.proitc.jdbc.transactions.orm.DBLogService">
     <constructor-arg ref="databaseService"/>
   </bean>
 
-  <bean id="userManager" class="spring.jdbc.transactions.orm.UserManager">
+  <bean id="userManager" class="com.proitc.jdbc.transactions.orm.UserManager">
     <constructor-arg ref="databaseService"/>
   </bean>
 
@@ -75,12 +75,12 @@
 
   <aop:config>
     <aop:pointcut id="logAllUserInfoQuery"
-      expression="execution(* spring.jdbc.transactions.orm.UserManager.logAllUserInfo(..))"/>
+      expression="execution(* com.proitc.jdbc.transactions.orm.UserManager.logAllUserInfo(..))"/>
     <aop:advisor pointcut-ref="logAllUserInfoQuery" advice-ref="txAdvice"/>
   </aop:config>
 
   <bean id="userManagerTransactionTemplate"
-    class="spring.jdbc.transactions.orm.UserManagerTransactionTemplate">
+    class="com.proitc.jdbc.transactions.orm.UserManagerTransactionTemplate">
     <constructor-arg ref="transactionManager"/>
     <property name="userManager" ref="userManager"/>
   </bean>

@@ -40,7 +40,7 @@
     <jdbc:script location="classpath:test-data.sql"/>
   </jdbc:initialize-database>
 
-  <bean id="databaseService" class="spring.bean.DatabaseService" scope="singleton">
+  <bean id="databaseService" class="DatabaseService" scope="singleton">
     <constructor-arg ref="dataSource"/>
   </bean>
 
@@ -54,15 +54,15 @@
   </bean>
 
   <!-- DBLogService -->
-  <bean id="dbLogService" class="spring.bean.DBLogService">
+  <bean id="dbLogService" class="DBLogService">
     <constructor-arg ref="databaseService"/>
   </bean>
 
-  <bean id="userManager" class="spring.bean.UserManager">
+  <bean id="userManager" class="UserManager">
     <constructor-arg ref="databaseService"/>
   </bean>
 
-  <bean id="registerService" class="spring.bean.RegisterService"/>
+  <bean id="registerService" class="RegisterService"/>
 
   <!-- REST template configuration -->
   <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>

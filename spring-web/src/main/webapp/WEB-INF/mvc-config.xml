@@ -22,8 +22,8 @@
   <context:component-scan base-package="spring.controller"/>
 
   <!-- XML Configuration for Controller -->
-  <!--  <bean id="registerController" class="spring.controller.RegisterController" />
- <bean id="userController" class="spring.controller.UserController" />
+  <!--  <bean id="registerController" class="RegisterController" />
+ <bean id="userController" class="UserController" />
  <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
    <property name="mappings">
      <props>
@@ -34,7 +34,7 @@
  </bean>
     -->
 
-  <bean id="xmlController" class="spring.controller.XMLController"/>
+  <bean id="xmlController" class="com.proitc.controller.XMLController"/>
   <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
     <property name="mappings">
       <props>

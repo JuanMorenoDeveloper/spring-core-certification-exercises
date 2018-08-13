@@ -5,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 public class DBLogService implements Log {
 
+  private static final Logger logger = LoggerFactory.getLogger(DBLogService.class);
   private JdbcTemplate jdbcTemplate;
 
   public DBLogService(DatabaseService databaseService) {
@@ -23,7 +25,7 @@ public class DBLogService implements Log {
   //JdbcTemplate INSERT example
   @Transactional(timeout = 60)
   public boolean log(final String log) {
-    System.out.println("DBLogService : " + log);
+    logger.debug("DBLogService : " + log);
     final String INSERT_SQL = "INSERT INTO LOG (LOGSTRING) VALUES (?)";
     try {
       jdbcTemplate.update(new PreparedStatementCreator() {
@@ -42,7 +44,7 @@ public class DBLogService implements Log {
 
   //JdbcTemplate query with in method RowMapper example
   public List<DBLog> queryAllDBLogs() {
-    System.out.println("DBLogService : queryAllDBLogs() is called");
+    logger.debug("DBLogService : queryAllDBLogs() is called");
     final String QUERY_SQL = "SELECT * FROM LOG";
     List<DBLog> dbLogs = this.jdbcTemplate.query(QUERY_SQL, new RowMapper<DBLog>() {
       public DBLog mapRow(ResultSet rs, int rowNum) throws SQLException {

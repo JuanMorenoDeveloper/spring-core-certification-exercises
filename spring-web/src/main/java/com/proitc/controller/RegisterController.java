@@ -4,7 +4,8 @@ import com.proitc.bean.RegisterService;
 import com.proitc.bean.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 // <context:component-scan base-package="spring.controller" />
 @Controller
 public class RegisterController {
-
+  private static final Logger log = LoggerFactory.getLogger(RegisterController.class);
   @Autowired
   private RegisterService registerService;
 
@@ -28,9 +29,9 @@ public class RegisterController {
     HttpServletRequest request, HttpServletResponse response)
     throws Exception {
 
-    System.out.println("RegisterController register is called");
-    System.out.println("RegisterController register email: " + email);
-    System.out.println("RegisterController register email: " + password);
+    log.debug("RegisterController register is called");
+    log.debug("RegisterController register email: " + email);
+    log.debug("RegisterController register email: " + password);
 
     User user = new User();
     user.setUsername(email);

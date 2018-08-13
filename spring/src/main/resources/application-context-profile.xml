@@ -42,9 +42,9 @@
   <bean id="logService" class="com.proitc.bean.LogService"/>
 
   <!-- DBLogService @Qualifier example -->
-  <bean id="DBlogService" class="DBLogService"/>
+  <bean id="DBlogService" class="com.proitc.bean.DBLogService"/>
 
-  <bean id="registerService" class="RegisterService"/>
+  <bean id="registerService" class="com.proitc.bean.RegisterService"/>
 
   <!-- Constructor dependency injection -->
   <!-- mainly used for required properties -->
@@ -59,7 +59,7 @@
       a ServletContext.
   -->
 
-  <bean id="databaseService" class="DatabaseService" scope="singleton">
+  <bean id="databaseService" class="com.proitc.bean.DatabaseService" scope="singleton">
     <constructor-arg ref="dataSource"/>
   </bean>
 
@@ -69,11 +69,11 @@
     <constructor-arg ref="logService"/>
   </bean>
 
-  <bean id="userManager" class="UserManager"/>
+  <bean id="userManager" class="com.proitc.bean.UserManager"/>
 
   <!-- Bean inheritance example -->
   <!-- SpEL Usage -->
-  <bean id="testUser" class="User">
+  <bean id="testUser" class="com.proitc.bean.User">
     <property name="username" value="#{util['username.test']}"/>
     <property name="password" value="testPassword"/>
     <property name="active" value="true"/>

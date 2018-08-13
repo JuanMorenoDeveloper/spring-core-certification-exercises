@@ -1,10 +1,12 @@
 package com.proitc.bean;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserManager {
-
+  private static final Logger log = LoggerFactory.getLogger(UserManager.class);
   public User user;
 
   public User updateUserName(User u, String newName) {
@@ -13,17 +15,17 @@ public class UserManager {
   }
 
   public void throwUserUpdateExceptionMethod() throws Exception {
-    System.out.println("UserManager throwUserUpdateExceptionMethod() is called");
+    log.debug("UserManager throwUserUpdateExceptionMethod() is called");
     throw new Exception();
   }
 
   public boolean throwNotUserUpdateExceptionMethod() throws Exception {
-    System.out.println("UserManager throwNotUserUpdateExceptionMethod() is called");
+    log.debug("UserManager throwNotUserUpdateExceptionMethod() is called");
     return true;
   }
 
   public boolean deleteUser(User user) {
-    System.out.println("UserManager deleteUser(User user) is called");
+    log.debug("UserManager deleteUser(User user) is called");
     return false;
   }
 

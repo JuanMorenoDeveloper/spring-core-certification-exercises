@@ -4,9 +4,9 @@ import com.proitc.jms.MessageReceiver;
 import com.proitc.jms.MessageSender;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.annotation.security.RolesAllowed;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MessageController {
-
+  private static final Logger log = LoggerFactory.getLogger(MessageController.class);
   @Autowired
   private MessageSender messageSender;
 
@@ -27,7 +27,7 @@ public class MessageController {
   @RequestMapping(value = "/sendJMSMessage", method = RequestMethod.GET)
   public ModelAndView sendJMSMessage() {
 
-    System.out.println("MessageController sendJMSMessage is called with ADMIN ROLE");
+    log.debug("MessageController sendJMSMessage is called with ADMIN ROLE");
     Map<String, String> messageMap = new HashMap<String, String>();
     messageMap.put("key1", "tunatore@gmail.com");
     messageMap.put("key2", "tunatore@outlook.com");
@@ -43,7 +43,7 @@ public class MessageController {
   @RequestMapping(value = "/sendJMSMessageAsync", method = RequestMethod.GET)
   public ModelAndView sendJMSMessageAsync() {
 
-    System.out.println("MessageController sendJMSMessageAsync is called with ADMIN ROLE");
+    log.debug("MessageController sendJMSMessageAsync is called with ADMIN ROLE");
     Map<String, String> messageMap2 = new HashMap<String, String>();
     messageMap2.put("key1", "topic tunatore@gmail.com");
     messageMap2.put("key2", "topic tunatore@outlook.com");
@@ -59,7 +59,7 @@ public class MessageController {
   @RequestMapping(value = "/sendJMSMessageCallback", method = RequestMethod.GET)
   public ModelAndView sendJMSMessageCallback() {
 
-    System.out.println("MessageController sendJMSMessageCallback is called with ADMIN ROLE");
+    log.debug("MessageController sendJMSMessageCallback is called with ADMIN ROLE");
     messageSender.SendTopicWithCallBack();
     return new ModelAndView("/admin/adminsecured");
 
@@ -68,10 +68,10 @@ public class MessageController {
   @RolesAllowed(value = {"ROLE_ADMIN"})
   @RequestMapping(value = "/getJMSMessage", method = RequestMethod.GET)
   public ModelAndView getJMSMessage() {
-    System.out.println(
+    log.debug(
       "Message Controller getJMSMessage synchronous " + messageReceiver.getJmsTemplate()
         .receiveAndConvert("queue"));
-    System.out.println(messageReceiver.getJmsTemplate().receiveAndConvert("queue"));
+    log.debug(messageReceiver.getJmsTemplate().receiveAndConvert("queue").toString());
     return new ModelAndView("/admin/adminsecured");
   }
 }

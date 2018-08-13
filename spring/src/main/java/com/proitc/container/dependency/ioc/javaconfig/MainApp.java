@@ -7,12 +7,16 @@ import com.proitc.bean.MailService;
 import com.proitc.bean.RegisterService;
 import com.proitc.bean.User;
 import com.proitc.bean.UserManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.util.Assert;
 
 public class MainApp {
+
+  private static final Logger log = LoggerFactory.getLogger(MainApp.class);
 
   public static void main(String[] args) {
 
@@ -22,19 +26,19 @@ public class MainApp {
     UserManager userManager = context.getBean(UserManager.class);
     User user = new User();
     user.setUsername("Tom");
-    System.out.println("Previous username:" + user.getUsername());
+    log.debug("Previous username:" + user.getUsername());
     User userUpdated = userManager.updateUserName(user, "John");
-    System.out.println("New username:" + userUpdated.getUsername());
+    log.debug("New username:" + userUpdated.getUsername());
 
     //Using Bean
     MailService mailService = context.getBean(MailService.class);
     //MailService mailService = (MailService)context.getBean("mailService"); //default bean ID same as method name
     boolean result = mailService.sendMessage("You have a new mail");
-    System.out.println("mail result: " + result);
+    log.debug("mail result: " + result);
 
     //Properties file output
-    System.out.println("mail.username: " + mailService.getUsername());
-    System.out.println("mail.password: " + mailService.getPassword());
+    log.debug("mail.username: " + mailService.getUsername());
+    log.debug("mail.password: " + mailService.getPassword());
 
     //Autowired through constructor
     DatabaseService databaseService = context.getBean(DatabaseService.class);
@@ -61,7 +65,7 @@ public class MainApp {
 
     ComplexBean complexBean = context.getBean(ComplexBean.class);
     Assert.notNull(complexBean);
-    System.out.println(complexBean);
+    log.debug(complexBean.toString());
 
     ((ConfigurableApplicationContext) (context)).close();
 

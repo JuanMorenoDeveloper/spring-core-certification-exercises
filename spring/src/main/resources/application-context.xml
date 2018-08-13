@@ -93,7 +93,7 @@
 
   <bean id="complexBean" class="com.proitc.util.ComplexBeanFactoryBeanImplementation"/>
 
-  <util:properties id="util" location="classpath:util.properties"></util:properties>
+  <util:properties id="util" location="classpath:util.properties"/>
 
   <!-- Importing all aspect-config xml -->
   <import resource="classpath:aspect-config.xml"/>

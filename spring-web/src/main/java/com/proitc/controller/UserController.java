@@ -3,12 +3,12 @@ package com.proitc.controller;
 import com.proitc.bean.User;
 import com.proitc.bean.UserManager;
 import java.util.List;
-
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
-
+  private static final Logger log = LoggerFactory.getLogger(UserController.class);
   @Autowired
   private UserManager userManager;
 
@@ -34,7 +34,7 @@ public class UserController {
     @RequestParam(value = "IDUSER") int idUser,
     HttpServletRequest request, HttpServletResponse response)
     throws Exception {
-    System.out.println("UserController getUserById is called");
+    log.debug("UserController getUserById is called");
     user = null;
     try {
       user = userManager.queryUserWithInternalRowMapper(idUser);
@@ -53,8 +53,8 @@ public class UserController {
     @PathVariable(value = "idUser") int idUser,
     HttpServletRequest request, HttpServletResponse response)
     throws Exception {
-    System.out.println("UserController getUserByIDPathVariable is called");
-    System.out.println("UserController getUserByIDPathVariable idUser: " + idUser);
+    log.debug("UserController getUserByIDPathVariable is called");
+    log.debug("UserController getUserByIDPathVariable idUser: " + idUser);
     user = null;
     try {
       user = userManager.queryUserWithInternalRowMapper(idUser);
@@ -71,7 +71,7 @@ public class UserController {
   @RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
   public String queryAllUsers(Model model)
     throws Exception {
-    System.out.println("UserController queryAllUsers is called");
+    log.debug("UserController queryAllUsers is called");
 
     List<User> users = null;
     try {
@@ -92,8 +92,8 @@ public class UserController {
   public ModelAndView testUserSessionAttribute(
     @PathVariable(value = "idUser") int idUser, HttpSession session)
     throws Exception {
-    System.out.println("UserController testUserSessionAttribute is called");
-    System.out.println("UserController testUserSessionAttribute sessionObject: " + session
+    log.debug("UserController testUserSessionAttribute is called");
+    log.debug("UserController testUserSessionAttribute sessionObject: " + session
       .getAttribute("sessionObject"));
     user = null;
     try {
@@ -112,7 +112,7 @@ public class UserController {
   @RolesAllowed(value = {"ROLE_ADMIN"})
   @RequestMapping(value = "/adminMethodJSR", method = RequestMethod.GET)
   public ModelAndView adminMethodJSR() {
-    System.out.println("UserController adminMethodJSR is called with ADMIN ROLE");
+    log.debug("UserController adminMethodJSR is called with ADMIN ROLE");
     return new ModelAndView("/admin/adminsecured");
 
   }
@@ -121,14 +121,14 @@ public class UserController {
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @RequestMapping(value = "/adminMethodSecuredSpEL", method = RequestMethod.GET)
   public ModelAndView preAuthorize() {
-    System.out.println("UserController preAuthorize is called for ROLE_ADMIN");
+    log.debug("UserController preAuthorize is called for ROLE_ADMIN");
     return new ModelAndView("/admin/adminsecured");
   }
 
   @Secured(value = {"ROLE_ADMIN"})
   @RequestMapping(value = "/adminMethodSecured", method = RequestMethod.GET)
   public ModelAndView adminMethodSecured() {
-    System.out.println("UserController adminMethodSecured is called with ADMIN ROLE");
+    log.debug("UserController adminMethodSecured is called with ADMIN ROLE");
     return new ModelAndView("/admin/adminsecured");
 
   }

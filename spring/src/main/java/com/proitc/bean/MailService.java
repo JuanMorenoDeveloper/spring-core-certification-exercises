@@ -1,10 +1,12 @@
 package com.proitc.bean;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 public class MailService {
-
+  private static final Logger log = LoggerFactory.getLogger(MailService.class);
   private LogService logService;
   private MailServiceConfig serviceConfig;
   private String mailServer;
@@ -20,7 +22,7 @@ public class MailService {
   private String password;
 
   public boolean sendMessage(String message) {
-    System.out.println("MailService sendMessage(String message) is called");
+    log.debug("MailService sendMessage(String message) is called");
     return logService.log("MailService content: " + message);
   }
 
@@ -54,7 +56,7 @@ public class MailService {
 
   @Autowired
   public void setLogService(LogService logService) {
-    System.out.println("through setter injection in MailService");
+    log.debug("through setter injection in MailService");
     this.logService = logService;
   }
 

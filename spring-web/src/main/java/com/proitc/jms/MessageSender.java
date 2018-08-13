@@ -2,22 +2,16 @@ package com.proitc.jms;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.MapMessage;
 import javax.jms.Message;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessagePostProcessor;
-import org.springframework.jms.core.ProducerCallback;
-import org.springframework.jms.core.SessionCallback;
 
 
 public class MessageSender {
-
+  private static final Logger log = LoggerFactory.getLogger(MessageSender.class);
   private JmsTemplate jmsTemplate;
   private JmsTemplate jmsTopicTemplate;
 
@@ -40,7 +34,7 @@ public class MessageSender {
   public void SendTopicWithCallBack() {
 
     //access message object and change it with callback
-    System.out.println("Message sender SendTopicWithCallBack is called");
+    log.debug("Message sender SendTopicWithCallBack is called");
     Map<String, String> mapMessage = new HashMap<String, String>();
     mapMessage.put("key1", "callback1");
     mapMessage.put("key2", "callback2");

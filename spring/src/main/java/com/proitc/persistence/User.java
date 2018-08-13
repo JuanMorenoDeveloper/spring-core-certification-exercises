@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Entity
 @Table(name = "USER")
 public class User {
-
+  private static final Logger log = LoggerFactory.getLogger(User.class);
   @Id
   @GeneratedValue
   @Column(name = "IDUSER")
@@ -29,7 +31,7 @@ public class User {
   }
 
   public void setUsername(String username) {
-    System.out.println("User setUsername is called");
+    log.debug("User setUsername is called");
     this.username = username;
   }
 
@@ -38,7 +40,7 @@ public class User {
   }
 
   public void setPassword(String password) {
-    System.out.println("User setPassword is called");
+    log.debug("User setPassword is called");
     this.password = password;
   }
 

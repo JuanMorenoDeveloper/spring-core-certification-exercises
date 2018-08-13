@@ -4,12 +4,14 @@ import javax.jms.JMSException;
 import javax.jms.MapMessage;
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JMSListener2 implements MessageListener {
-
+  private static final Logger log = LoggerFactory.getLogger(JMSListener2.class);
   public void onMessage(Message message) {
-    System.out.println(message);
-    System.out.println("JMSListener2: Asynchronous onMessage is called");
+    log.debug(message.toString());
+    log.debug("JMSListener2: Asynchronous onMessage is called");
     final MapMessage mapMessage = (MapMessage) message;
     try {
       String key1 = mapMessage.getString("key1");
@@ -17,13 +19,13 @@ public class JMSListener2 implements MessageListener {
       String key3 = mapMessage.getString("key3");
       String key4 = mapMessage.getString("key4");
 
-      System.out.println("JMSListener2 mapMessage key1: " + key1);
-      System.out.println("JMSListener2 mapMessage key2: " + key2);
-      System.out.println("JMSListener2 mapMessage key3: " + key3);
-      System.out.println("JMSListener2 mapMessage key4: " + key4);
+      log.debug("JMSListener2 mapMessage key1: " + key1);
+      log.debug("JMSListener2 mapMessage key2: " + key2);
+      log.debug("JMSListener2 mapMessage key3: " + key3);
+      log.debug("JMSListener2 mapMessage key4: " + key4);
 
-      System.out.println("JMSListener2 message idJMS: " + message.getStringProperty("idJMS"));
-      System.out.println("JMSListener2 message JMSCorrelationID: " + message.getJMSCorrelationID());
+      log.debug("JMSListener2 message idJMS: " + message.getStringProperty("idJMS"));
+      log.debug("JMSListener2 message JMSCorrelationID: " + message.getJMSCorrelationID());
     } catch (JMSException e) {
       e.printStackTrace();
     }

@@ -1,11 +1,14 @@
 package com.proitc.bean;
 
 
-public class RegisterService {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class RegisterService {
+  private static final Logger log = LoggerFactory.getLogger(RegisterService.class);
 
   public boolean registerUser(User user) {
-    System.out.println("RegisterService registerUser(User u) is called");
+    log.debug("RegisterService registerUser(User u) is called");
     if (user.getUsername().equals("") || user.getPassword().equals("")) {
       return false;
     } else {

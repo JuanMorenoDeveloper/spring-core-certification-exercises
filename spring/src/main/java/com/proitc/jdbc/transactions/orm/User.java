@@ -1,7 +1,10 @@
 package com.proitc.jdbc.transactions.orm;
 
-public class User {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class User {
+  private static final Logger log = LoggerFactory.getLogger(User.class);
   private int idUser;
 
   private String username;
@@ -13,7 +16,7 @@ public class User {
   }
 
   public void setUsername(String username) {
-    System.out.println("User setUsername is called");
+    log.debug("User setUsername is called");
     this.username = username;
   }
 
@@ -22,7 +25,7 @@ public class User {
   }
 
   public void setPassword(String password) {
-    System.out.println("User setPassword is called");
+    log.debug("User setPassword is called");
     this.password = password;
   }
 

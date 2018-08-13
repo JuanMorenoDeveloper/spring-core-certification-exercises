@@ -11,13 +11,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DatabaseService {
 
-  private static final Logger log = LoggerFactory.getLogger(DatabaseService.class.getName());
+  private static final Logger log = LoggerFactory.getLogger(DatabaseService.class);
 
   @Autowired
   public DatabaseService(DataSource dataSource) {
     log.debug("Datasource through Constructor injection in DatabaseService");
-    System.out.println("DataSource: " + dataSource.getDriverClassName());
-    System.out.println("DataSource: " + dataSource.getUrl());
+    log.debug("DataSource: " + dataSource.getDriverClassName());
+    log.debug("DataSource: " + dataSource.getUrl());
   }
 
 
@@ -25,14 +25,14 @@ public class DatabaseService {
   @PostConstruct
   public void init() {
     //initialization work
-    System.out.println("@PostConstruct :" + "is called");
+    log.debug("@PostConstruct :" + "is called");
   }
 
   //javax.annotation approach
   @PreDestroy
   public void destroy() {
     //destruction work
-    System.out.println("@PreDestroy :" + "is called");
+    log.debug("@PreDestroy :" + "is called");
   }
 
 }

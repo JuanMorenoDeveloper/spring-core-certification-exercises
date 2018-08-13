@@ -6,7 +6,8 @@ import com.proitc.bean.DBLogs;
 import com.proitc.bean.User;
 import com.proitc.bean.UserManager;
 import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class AdminRestController {
-
+  private static final Logger log = LoggerFactory.getLogger(AdminRestController.class);
   @Autowired
   private RestTemplate restTemplate;
 
@@ -38,7 +39,7 @@ public class AdminRestController {
     ResponseEntity<String> response = restTemplate.getForEntity(
       "http://md5.jsontest.com/?text={text}", String.class, text);
 
-    System.out.println("AdminRestController md5String return response: "
+    log.debug("AdminRestController md5String return response: "
       + response);
     return response.toString();
   }
@@ -54,7 +55,7 @@ public class AdminRestController {
       e.printStackTrace();
     }
 
-    System.out.println(users);
+    log.debug(users.toString());
     return users;
   }
 
@@ -68,7 +69,7 @@ public class AdminRestController {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    System.out.println(dbLogList);
+    log.debug(dbLogList.toString());
     DBLogs dbLogs = new DBLogs();
     dbLogs.setLogList(dbLogList);
     return dbLogs;

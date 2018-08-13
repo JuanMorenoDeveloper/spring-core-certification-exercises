@@ -22,7 +22,7 @@
   <context:property-placeholder location="classpath:util.properties"/>
 
   <!-- This tag will configure context for annotations and scan packages for components and wire them -->
-  <context:component-scan base-package="spring.persistence"/>
+  <context:component-scan base-package="com.proitc.persistence"/>
 
   <!-- bean definitions will be defined here -->
 
@@ -34,7 +34,7 @@
   <!-- Persistence Context and EntityManager configuration -->
   <bean id="entityManagerFactory"
     class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-    <property name="packagesToScan" value="spring.persistence"/>
+    <property name="packagesToScan" value="com.proitc.persistence"/>
     <property name="dataSource" ref="dataSource"/>
     <property name="jpaVendorAdapter">
       <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">

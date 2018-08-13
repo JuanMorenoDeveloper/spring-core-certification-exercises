@@ -1,4 +1,4 @@
-package com.proitc.container.dependency.ioc.XMLconfig;
+package com.proitc.container.dependency.ioc.config.xml;
 
 import com.proitc.bean.ComplexBean;
 import com.proitc.bean.DatabaseService;
@@ -8,6 +8,8 @@ import com.proitc.bean.RegisterService;
 import com.proitc.bean.SuperUser;
 import com.proitc.bean.User;
 import com.proitc.bean.UserManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -33,7 +35,7 @@ import org.springframework.util.Assert;
 
 public class MainApp {
 
-
+  private static final Logger log = LoggerFactory.getLogger(MainApp.class);
   public static void main(String[] args) {
 
     // Creating the application context
@@ -50,22 +52,22 @@ public class MainApp {
 
     User user = new User();
     user.setUsername("Tom");
-    System.out.println("Previous username:" + user.getUsername());
+    log.debug("Previous username:" + user.getUsername());
 
     User userUpdated = userManager.updateUserName(user, "John");
-    System.out.println("New username:" + userUpdated.getUsername());
+    log.debug("New username:" + userUpdated.getUsername());
 
     //no bean id required if the type of requested object is unique
     //no casting is required
     MailService mailService = context.getBean(MailService.class);
-    System.out.println("Inner bean state in mailService: " + mailService.getServiceConfig()
+    log.debug("Inner bean state in mailService: " + mailService.getServiceConfig()
       .getMaxHourlyEmailLimit());
     boolean result = mailService.sendMessage("You have a new mail");
-    System.out.println("mail result: " + result);
+    log.debug("mail result: " + result);
 
     //Properties file output
-    System.out.println("mail.username: " + mailService.getUsername());
-    System.out.println("mail.password: " + mailService.getPassword());
+    log.debug("mail.username: " + mailService.getUsername());
+    log.debug("mail.password: " + mailService.getPassword());
 
     //no casting is required with the following approach
     DatabaseService databaseService = context.getBean("databaseService", DatabaseService.class);
@@ -92,18 +94,18 @@ public class MainApp {
 
     // Bean inheritance example
     User testUser = context.getBean("testUser", User.class);
-    System.out.println("Bean inheritance testUser username: " + testUser.getUsername());
-    System.out.println("Bean inheritance testUser password: " + testUser.getPassword());
-    System.out.println("Bean inheritance testUser active: " + testUser.isActive());
+    log.debug("Bean inheritance testUser username: " + testUser.getUsername());
+    log.debug("Bean inheritance testUser password: " + testUser.getPassword());
+    log.debug("Bean inheritance testUser active: " + testUser.isActive());
 
     SuperUser superUser = context.getBean("superUser", SuperUser.class);
     System.out
       .println("Bean inheritance superUser systemPassword: " + superUser.getSystemPassword());
-    System.out.println("Bean inheritance superUser contact: " + superUser.getContact());
+    log.debug("Bean inheritance superUser contact: " + superUser.getContact());
 
     ComplexBean complexBean = context.getBean(ComplexBean.class);
     Assert.notNull(complexBean);
-    System.out.println(complexBean);
+    log.debug(complexBean.toString());
 
     //close the application and release all sources and locks
     ((ConfigurableApplicationContext) (context)).close();

@@ -1,5 +1,7 @@
 package com.proitc.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 //will add automatically the @ResponseBody annotation to all methods // replacement for @Controller and @ResponseBody
 public class RestControllerExample {
-
+  private static final Logger log = LoggerFactory.getLogger(RestControllerExample.class);
   @Autowired
   private RestTemplate restTemplate;
 
@@ -29,7 +31,7 @@ public class RestControllerExample {
       "http://echo.jsontest.com/person1/{person1}/person2/{person2}",
       String.class, person1, person2);
 
-    System.out.println("RestControllerExample echoPersons return response: " + response);
+    log.debug("RestControllerExample echoPersons return response: " + response);
     return response.toString();
   }
 
@@ -37,14 +39,14 @@ public class RestControllerExample {
   public String responseStatusTest() throws Exception {
 
     //responseStatusTest
-    System.out.println("RestControllerExample responseStatusTest");
+    log.debug("RestControllerExample responseStatusTest");
     throw new Exception("responseStatusTest exception");
   }
 
   @ExceptionHandler
   @ResponseStatus(value = HttpStatus.BAD_GATEWAY, reason = "PROVIDE YOUR REASON HERE")
   public void handleException(Exception ex) {
-    System.out.println(ex);
+    log.error("",ex);
   }
 
 

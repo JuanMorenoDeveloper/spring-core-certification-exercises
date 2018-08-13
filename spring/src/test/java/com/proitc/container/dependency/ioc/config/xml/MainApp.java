@@ -16,10 +16,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.Assert;
 
 /*
- • What is an inner bean? Why does it not have a bean id? Can it be reused?
-  	No ID is required for inner beans hence it is always anonymous and belongs to parent bean
-  	It is not possible to inject or autowire inner beans in other beans 
-  	
  • What is a prefix? 
  
  	Prefixes are used in resource strings for convenience

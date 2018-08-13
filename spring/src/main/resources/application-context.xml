@@ -29,6 +29,9 @@
     <property name="port" value="smtp"/>
     <property name="protocol" value="9999"/>
     <property name="serviceConfig">
+      <!-- What is an inner bean? Why does it not have a bean id? Can it be reused?-->
+      <!-- No ID is required for inner beans hence it is always anonymous and belongs to parent bean-->
+      <!-- It is not possible to inject or autowire inner beans in other beans-->
       <!-- <property/> or <constructor-arg/> elements defines inner bean. -->
       <!-- no ID is required for inner beans hence it is always anonymous and belongs to parent bean
          It is not possible to inject or autowire inner beans in other beans  -->
@@ -42,7 +45,7 @@
   <bean id="logService" class="com.proitc.bean.LogService"/>
 
   <!-- DBLogService @Qualifier example -->
-  <bean id="DBlogService" class="com.proitc.bean.DBLogService"  />
+  <bean id="DBlogService" class="com.proitc.bean.DBLogService"/>
 
   <bean id="registerService" class="com.proitc.bean.RegisterService"/>
 

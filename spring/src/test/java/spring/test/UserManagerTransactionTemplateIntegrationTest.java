@@ -12,7 +12,7 @@ import spring.jdbc.transactions.orm.UserManagerTransactionTemplate;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:application-context-jdbc.xml"})
-public class TestUserManagerTransactionTemplate {
+public class UserManagerTransactionTemplateIntegrationTest {
 
   @Autowired
   private ApplicationContext context;

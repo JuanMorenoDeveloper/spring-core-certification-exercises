@@ -18,7 +18,7 @@ import spring.bean.MailService;
 @ContextConfiguration(locations = {"classpath:application-context-profile.xml"})
 @ActiveProfiles(profiles = "development")
 //@ActiveProfiles(profiles="production") --comment out this one to get production DataSource
-public class TestXMLProfile {
+public class XMLProfileIntegrationTest {
 
   @Autowired
   private ApplicationContext context;

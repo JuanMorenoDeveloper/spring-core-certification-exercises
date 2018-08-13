@@ -19,7 +19,7 @@ import spring.container.dependency.ioc.javaconfig.JavaConfig;
 @ContextConfiguration(classes = JavaConfig.class) //JavaConfig class
 @ActiveProfiles(profiles = "development")
 //@ActiveProfiles(profiles="production") //comment out this one to get production DataSource
-public class TestJavaConfigProfile {
+public class ConfigProfileIntegrationTest {
 
   @Autowired
   private ApplicationContext context;

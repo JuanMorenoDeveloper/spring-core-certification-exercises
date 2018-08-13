@@ -19,7 +19,7 @@ import spring.persistence.UserManager;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:application-context-persistence.xml"})
 @Transactional
-public class TestJPAPersistence {
+public class JPAPersistenceIntegrationTest {
 
   @Autowired
   private ApplicationContext context;

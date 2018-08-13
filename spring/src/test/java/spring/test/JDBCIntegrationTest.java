@@ -20,7 +20,7 @@ import spring.jdbc.transactions.orm.UserManager;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:application-context-jdbc.xml"})
-public class TestJDBC {
+public class JDBCIntegrationTest {
 
   @Autowired
   private ApplicationContext context;

@@ -9,13 +9,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import spring.bean.MailService;
 
 //How are you going to create an ApplicationContext in an integration test or a JUnit test? 
+
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:application-context.xml"})
-public class TestMailServiceAbstractJUnit5SpringContextTests  implements ApplicationContextAware {
+public class MailServiceApplicationContextAwareIntegrationTest implements ApplicationContextAware {
+
   private ApplicationContext context;
 
   public void setApplicationContext(ApplicationContext context)
@@ -23,8 +24,10 @@ public class TestMailServiceAbstractJUnit5SpringContextTests  implements Applica
     this.context = context;
 
   }
+
   @Test
   public void testEmail() {
+
     MailService mailService = context.getBean(MailService.class);
     assertThat(mailService).isNotNull();
     mailService.sendMessage("Test Mail Service Email");

@@ -29,7 +29,7 @@
     <aspectj.version>1.8.13</aspectj.version>
     <hsqldb.version>2.4.1</hsqldb.version>
     <jsr250-api.version>1.0</jsr250-api.version>
-
+    <logback.version>1.2.3</logback.version>
   </properties>
 
   <dependencies>
@@ -135,6 +135,11 @@
       <artifactId>assertj-core</artifactId>
       <version>${assertj-core.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
     </dependency>
   </dependencies>
   <build>

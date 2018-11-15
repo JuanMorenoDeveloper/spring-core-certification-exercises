@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.proitc</groupId>
@@ -20,17 +20,16 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <!-- Plugins versions -->
     <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-    <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-    <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
-    <spotbugs-maven-plugin.version>3.1.6</spotbugs-maven-plugin.version>
+    <maven-pmd-plugin.version>3.11.0</maven-pmd-plugin.version>
+    <spotbugs-maven-plugin.version>3.1.8</spotbugs-maven-plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.30.0</maven.sevntu.checkstyle.plugin.version>
-    <checkstyle.version>8.11</checkstyle.version>
-    <maven.jacoco.plugin.version>0.8.1</maven.jacoco.plugin.version>
+    <checkstyle.version>8.14</checkstyle.version>
+    <maven.jacoco.plugin.version>0.8.2</maven.jacoco.plugin.version>
     <!--Library dependencies-->
-    <junit.jupiter.version>5.2.0</junit.jupiter.version>
-    <junit.platform.version>1.2.0</junit.platform.version>
-    <assertj-core.version>3.10.0</assertj-core.version>
+    <junit.jupiter.version>5.3.1</junit.jupiter.version>
+    <assertj-core.version>3.11.1</assertj-core.version>
   </properties>
 
   <modules>
@@ -89,15 +88,6 @@
               <targetJdk>${maven.compiler.source}</targetJdk>
               <skipEmptyReport>false</skipEmptyReport>
               <ignoreLiterals>false</ignoreLiterals>
-              <excludes>
-                <exclude>**/generated-sources/**/*.java</exclude>
-              </excludes>
-              <excludeRoots>
-                <excludeRoot>${basedir}/target/generated-sources</excludeRoot>
-                <excludeRoot>${basedir}/target/generated-sources/annotations</excludeRoot>
-                <excludeRoot>${basedir}/target/generated-sources/xjc</excludeRoot>
-                <excludeRoot>${basedir}/target/generated-sources/cxf</excludeRoot>
-              </excludeRoots>
               <rulesets>
                 <ruleset>./pmd-rulesets.xml</ruleset>
               </rulesets>
@@ -137,12 +127,6 @@
             <version>${maven.jacoco.plugin.version}</version>
             <configuration>
               <dataFile>${project.build.directory}/jacoco/jacoco.exec</dataFile>
-              <excludes>
-                <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
-                <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
-                <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
-                <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
-              </excludes>
               <append>true</append>
               <rules>
                 <rule>

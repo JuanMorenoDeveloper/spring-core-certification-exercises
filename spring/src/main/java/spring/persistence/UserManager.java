@@ -28,9 +28,9 @@ public class UserManager {
   public int queryCountAllUsersJPA() {
 
     System.out.println("UserManager queryCountAllUsersJPA is called");
-    String qlString = "from User";
-    TypedQuery<User> query = entityManager.createQuery(qlString, User.class);
-    return query.getResultList().size();
+    String qlString = "select count(u.idUser) from User u";
+    TypedQuery<Long> query = entityManager.createQuery(qlString, Long.class);
+    return query.getSingleResult().intValue();
   }
 
   public User queryFindByIdUser(int idUser) {

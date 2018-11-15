@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
@@ -9,6 +9,7 @@
 <head>
     <meta charset="utf-8">
     <title>Admin Secured</title>
+    <link rel="stylesheet" href="<c:url value="/resources/css/tacit-css-1.3.4.min.css"/>"/>
 </head>
 <body>
 <c:url value="/getUserById" var="adminGetUserByIdURL"/>
@@ -16,13 +17,13 @@
 <c:url value="/getAllUsers" var="adminQueryAllUsersURL"/>
 <c:url value="/testUserSessionAttribute" var="adminTestUserSessionAttribute"/>
 <h1><b>Admin With Secured</b></h1>
-<security:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+<security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
     <b>You are logged in as: </b><security:authentication
         property="principal.username"/> with the role of: <b><security:authentication
         property="principal.authorities"/></b><br/>
     <span style="color: #568C00;"><security:authentication property="principal.username"/></span>
     <a style="color: #568C00!important;"
-       href="<c:url value="/j_spring_security_logout"/>">Logout</a>
+       href="<c:url value="/logout"/>">Logout</a>
 </security:authorize>
 <br/>
 <br/>
@@ -36,6 +37,7 @@
         <tr>
             <td colspan="2" align="right"><input type="submit" value="GET USER"></td>
         </tr>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </table>
 </form>
 <br/>
@@ -58,7 +60,7 @@
 <font size="3" style="color: #568C00!important;"><b><c:if
         test="${isAdmin}">You have admin rights</c:if></b></font>
 <br/>
-<security:authorize ifAnyGranted="ROLE_ADMIN">
+<security:authorize access="hasAnyRole('ROLE_ADMIN')">
     <br/>
     <b>getAllUsers Model Admin Role Granted</b>
     <br/>

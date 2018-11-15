@@ -37,11 +37,7 @@ public class UserManager {
     System.out.println("UserManager updateUserName called");
     final String UPDATE_SQL = "UPDATE USER SET USERNAME = ? WHERE USERNAME = ?";
     int result = jdbcTemplate.update(UPDATE_SQL, new Object[]{newName, u.getUsername()});
-    if (result > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return result > 0;
   }
 
   //update INSERT example
@@ -51,11 +47,7 @@ public class UserManager {
     final String INSERT_SQL = "INSERT INTO USER (USERNAME,PASSWORD,ACTIVE) VALUES (?,?,?)";
     int result = jdbcTemplate
       .update(INSERT_SQL, new Object[]{user.getUsername(), user.getPassword(), user.isActive()});
-    if (result > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return result > 0;
   }
 
   //queryForObject(QUERY_SQL, Integer.class) Example

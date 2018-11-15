@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -19,20 +19,25 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- Spring -->
-    <spring-framework.version>5.0.8.RELEASE</spring-framework.version>
-    <spring-framework.data.version>2.0.9.RELEASE</spring-framework.data.version>
+    <spring-framework.version>5.1.2.RELEASE</spring-framework.version>
+    <spring-framework.data.version>2.1.2.RELEASE</spring-framework.data.version>
 
     <!-- Hibernate / JPA -->
-    <hibernate.version>5.1.14.Final</hibernate.version>
+    <hibernate.version>5.3.7.Final</hibernate.version>
 
     <!-- AspectJ -->
-    <aspectj.version>1.8.13</aspectj.version>
+    <aspectj.version>1.9.2</aspectj.version>
     <hsqldb.version>2.4.1</hsqldb.version>
     <jsr250-api.version>1.0</jsr250-api.version>
-
+    <glassfish-jaxb.version>2.3.1</glassfish-jaxb.version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>${glassfish-jaxb.version}</version>
+    </dependency>
     <!-- Spring and Transactions -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -117,13 +122,6 @@
       <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
-      <version>${junit.jupiter.version}</version>
-      <scope>test</scope>
-    </dependency>
-
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>

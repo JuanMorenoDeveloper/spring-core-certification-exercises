@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.springframework.samples.service.service</groupId>
   <artifactId>spring-web</artifactId>
@@ -10,23 +10,24 @@
   <properties>
 
     <!-- Generic properties -->
-    <java.version>1.8</java.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- Web -->
     <jsp.version>2.3.1</jsp.version>
     <jstl.version>1.2</jstl.version>
-    <servlet.version>3.1.0</servlet.version>
+    <servlet.version>4.0.1</servlet.version>
 
     <!-- Spring -->
-    <spring-framework.version>5.0.8.RELEASE</spring-framework.version>
+    <spring-framework.version>5.1.2.RELEASE</spring-framework.version>
 
     <!-- Spring Security -->
-    <spring-security.version>5.0.7.RELEASE</spring-security.version>
+    <spring-security.version>5.1.1.RELEASE</spring-security.version>
 
     <!-- Hibernate / JPA -->
-    <hibernate.version>5.1.14.Final</hibernate.version>
+    <hibernate.version>5.3.7.Final</hibernate.version>
 
     <!-- Logging -->
     <logback.version>1.2.3</logback.version>
@@ -36,13 +37,15 @@
     <junit.version>4.12</junit.version>
 
     <!-- JMS activemq.version -->
-    <activemq.version>5.15.4</activemq.version>
+    <activemq.version>5.15.7</activemq.version>
 
     <!-- jackson json JSON Processing API -->
-    <jackson.databind-version>2.9.6</jackson.databind-version>
+    <jackson.databind-version>2.9.7</jackson.databind-version>
 
     <hsqldb.version>2.4.1</hsqldb.version>
-    <jaxb-api.version>2.3.0</jaxb-api.version>
+    <jaxb-api.version>2.3.1</jaxb-api.version>
+
+    <jetty-maven-plugin.version>9.4.12.v20180830</jetty-maven-plugin.version>
 
   </properties>
 
@@ -113,7 +116,7 @@
     <!-- Hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
+      <artifactId>hibernate-core</artifactId>
       <version>${hibernate.version}</version>
     </dependency>
 
@@ -161,8 +164,6 @@
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-taglibs</artifactId>
       <version>${spring-security.version}</version>
-      <type>jar</type>
-      <scope>compile</scope>
     </dependency>
 
     <!-- Spring JMS -->
@@ -194,4 +195,19 @@
     </dependency>
 
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <!--mvn jetty:run-exploded-->
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jetty-maven-plugin.version}</version>
+        <configuration>
+          <webAppConfig>
+            <contextPath>/</contextPath>
+          </webAppConfig>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

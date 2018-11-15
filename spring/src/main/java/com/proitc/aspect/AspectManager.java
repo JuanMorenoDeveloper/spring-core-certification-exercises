@@ -3,13 +3,7 @@ package com.proitc.aspect;
 import com.proitc.bean.UserManager;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -35,22 +29,18 @@ public class AspectManager {
   @AfterThrowing(value = "execution(void com.proitc.bean.UserManager.throw*())", throwing = "e")
   public void afterThrowingUserManagerThrow(JoinPoint jp, Exception e) {
     //After Throwing Advice: Advice to be executed after target object's method throws an exception
-    log.debug(
-      "@Aspect @AfterThrowing UserManager throwUserUpdateExceptionMethod method is called");
+    log.debug("@Aspect @AfterThrowing UserManager throwUserUpdateExceptionMethod method is called");
     log.debug("Target Class: " + jp.getClass());
     log.debug("Target Kind: " + jp.getKind());
     log.debug("Target Signature: " + jp.getSignature());
     log.debug("Target Target: " + jp.getTarget());
     UserManager userManager = (UserManager) jp.getTarget();
-    //comment out
-    //e.printStackTrace();
   }
 
   @AfterReturning(value = "execution(boolean com.proitc.bean.UserManager.throw*())", returning = "result")
   public void afterReturningUserManagerThrow(JoinPoint jp, boolean result) {
     //After Returning Advice: Advice to be executed after successful return from a method a call inside target object
-    log.debug(
-      "@Aspect @AfterReturning UserManager throwUserUpdateExceptionMethod method is called");
+    log.debug("@Aspect @AfterReturning UserManager throwUserUpdateExceptionMethod method is called");
     log.debug("result: " + result);
   }
 
@@ -62,8 +52,7 @@ public class AspectManager {
 
   @Around("execution(boolean com.proitc.bean.UserManager.deleteUser(*))")
   public boolean aroundDeleteUser(ProceedingJoinPoint point) throws Throwable {
-    log.debug(
-      "@Aspect @Around UserManager deleteUser(User user) method before proceed() is called");
+    log.debug("@Aspect @Around UserManager deleteUser(User user) method before proceed() is called");
 
     if (loggingRequired == true) {
       log.debug("AspectManager aroundDeleteUser log active");
@@ -72,11 +61,9 @@ public class AspectManager {
       point.proceed();
     }
     //Around Advice: Advice to be executed before of after the target object's method run and able to change the execution flow using the proceed method in ProceedingJointPoint parameter
-    log.debug(
-      "@Aspect @Around UserManager deleteUser(User user) method after proceed() is called");
+    log.debug("@Aspect @Around UserManager deleteUser(User user) method after proceed() is called");
     return true;
   }
-
 
   //named pointcut example
   @After("userManagerMethods() || registerServiceMethods()")
@@ -87,8 +74,7 @@ public class AspectManager {
   //named point externalization example
   @After("com.proitc.aspect.ExternalizeAspectExpression.mailServiceMethods()")
   public void namedPointCutExternalizationExample(JoinPoint jp) {
-    log.debug(
-      " ***** namePointCut externalization example ***** " + jp.getSignature() + " is called");
+    log.debug(" ***** namePointCut externalization example ***** " + jp.getSignature() + " is called");
   }
 
   @Pointcut("execution(* com.proitc.bean.UserManager.*(*))")

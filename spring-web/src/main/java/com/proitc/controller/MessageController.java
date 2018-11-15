@@ -2,9 +2,6 @@ package com.proitc.controller;
 
 import com.proitc.jms.MessageReceiver;
 import com.proitc.jms.MessageSender;
-import java.util.HashMap;
-import java.util.Map;
-import javax.annotation.security.RolesAllowed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class MessageController {
   private static final Logger log = LoggerFactory.getLogger(MessageController.class);
-  @Autowired
-  private MessageSender messageSender;
+  @Autowired private MessageSender messageSender;
 
-  @Autowired
-  private MessageReceiver messageReceiver;
+  @Autowired private MessageReceiver messageReceiver;
 
-  @RolesAllowed(value = {"ROLE_ADMIN"})
+  @RolesAllowed(value = { "ROLE_ADMIN" })
   @RequestMapping(value = "/sendJMSMessage", method = RequestMethod.GET)
   public ModelAndView sendJMSMessage() {
 
@@ -39,7 +37,7 @@ public class MessageController {
 
   }
 
-  @RolesAllowed(value = {"ROLE_ADMIN"})
+  @RolesAllowed(value = { "ROLE_ADMIN" })
   @RequestMapping(value = "/sendJMSMessageAsync", method = RequestMethod.GET)
   public ModelAndView sendJMSMessageAsync() {
 
@@ -55,7 +53,7 @@ public class MessageController {
 
   }
 
-  @RolesAllowed(value = {"ROLE_ADMIN"})
+  @RolesAllowed(value = { "ROLE_ADMIN" })
   @RequestMapping(value = "/sendJMSMessageCallback", method = RequestMethod.GET)
   public ModelAndView sendJMSMessageCallback() {
 
@@ -65,13 +63,16 @@ public class MessageController {
 
   }
 
-  @RolesAllowed(value = {"ROLE_ADMIN"})
+  @RolesAllowed(value = { "ROLE_ADMIN" })
   @RequestMapping(value = "/getJMSMessage", method = RequestMethod.GET)
   public ModelAndView getJMSMessage() {
-    log.debug(
-      "Message Controller getJMSMessage synchronous " + messageReceiver.getJmsTemplate()
-        .receiveAndConvert("queue"));
-    log.debug(messageReceiver.getJmsTemplate().receiveAndConvert("queue").toString());
+    log.debug("Message Controller getJMSMessage synchronous " + messageReceiver
+      .getJmsTemplate()
+      .receiveAndConvert("queue"));
+    log.debug(messageReceiver
+      .getJmsTemplate()
+      .receiveAndConvert("queue")
+      .toString());
     return new ModelAndView("/admin/adminsecured");
   }
 }

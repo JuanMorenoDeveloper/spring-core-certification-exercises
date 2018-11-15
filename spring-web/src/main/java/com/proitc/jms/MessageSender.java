@@ -1,14 +1,14 @@
 package com.proitc.jms;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.jms.JMSException;
-import javax.jms.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessagePostProcessor;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MessageSender {
   private static final Logger log = LoggerFactory.getLogger(MessageSender.class);

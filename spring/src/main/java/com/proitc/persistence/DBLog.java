@@ -1,11 +1,6 @@
 package com.proitc.persistence;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import javax.persistence.*;
 
 @Entity
 @Table(name = "LOG")
@@ -16,8 +11,7 @@ public class DBLog {
   @Column(name = "IDLOG")
   private int IDLOG;
 
-  @Column(name = "LOGSTRING")
-  private String LOGSTRING;
+  @Column(name = "LOGSTRING") private String LOGSTRING;
 
   public int getIDLOG() {
     return IDLOG;
@@ -34,6 +28,5 @@ public class DBLog {
   public void setLOGSTRING(String lOGSTRING) {
     LOGSTRING = lOGSTRING;
   }
-
 
 }

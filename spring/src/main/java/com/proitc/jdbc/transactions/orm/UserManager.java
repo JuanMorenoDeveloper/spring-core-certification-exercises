@@ -1,11 +1,5 @@
 package com.proitc.jdbc.transactions.orm;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -16,6 +10,12 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Transactional
 public class UserManager {
@@ -31,14 +31,14 @@ public class UserManager {
   public User queryUserWithInternalRowMapper(int idUser) {
     log.debug("UserManager queryUserWithInternalRowMapper called");
     final String QUERY_SQL = "SELECT * FROM USER WHERE IDUSER=?";
-    return jdbcTemplate.queryForObject(QUERY_SQL, new Object[]{idUser}, new UserMapper());
+    return jdbcTemplate.queryForObject(QUERY_SQL, new Object[] { idUser }, new UserMapper());
   }
 
   //update UPDATE example
   public boolean updateUserName(User u, String newName) {
     log.debug("UserManager updateUserName called");
     final String UPDATE_SQL = "UPDATE USER SET USERNAME = ? WHERE USERNAME = ?";
-    int result = jdbcTemplate.update(UPDATE_SQL, new Object[]{newName, u.getUsername()});
+    int result = jdbcTemplate.update(UPDATE_SQL, new Object[] { newName, u.getUsername() });
     return result > 0;
   }
 
@@ -47,8 +47,7 @@ public class UserManager {
   public boolean addUSER(User user) {
     log.debug("UserManager addUSER called");
     final String INSERT_SQL = "INSERT INTO USER (USERNAME,PASSWORD,ACTIVE) VALUES (?,?,?)";
-    int result = jdbcTemplate
-      .update(INSERT_SQL, new Object[]{user.getUsername(), user.getPassword(), user.isActive()});
+    int result = jdbcTemplate.update(INSERT_SQL, new Object[] { user.getUsername(), user.getPassword(), user.isActive() });
     return result > 0;
   }
 
@@ -109,12 +108,13 @@ public class UserManager {
   //It is your responsibility to iterate in resultset
   private static final class UserResultSetExtractor implements ResultSetExtractor<List<User>> {
 
-    public List<User> extractData(ResultSet rs) throws SQLException,
-      DataAccessException {
+    public List<User> extractData(ResultSet rs) throws SQLException, DataAccessException {
       List<User> testUsers = new ArrayList<User>();
       while (rs.next()) {
         User user = null;
-        if (rs.getString("USERNAME").contains("test")) {
+        if (rs
+          .getString("USERNAME")
+          .contains("test")) {
           user = new User();
           user.setIdUser(rs.getInt("IDUSER"));
           user.setUsername(rs.getString("USERNAME"));
@@ -144,6 +144,5 @@ public class UserManager {
       }
     }
   }
-
 
 }

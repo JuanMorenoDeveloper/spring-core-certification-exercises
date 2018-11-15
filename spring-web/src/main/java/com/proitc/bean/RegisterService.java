@@ -1,6 +1,5 @@
 package com.proitc.bean;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,12 +8,11 @@ public class RegisterService {
 
   public boolean registerUser(User user) {
     log.debug("RegisterService registerUser(User u) is called");
-    if (user.getUsername().equals("") || user.getPassword().equals("")) {
-      return false;
-    } else {
-      return true;
-    }
+    return !user
+      .getUsername()
+      .equals("") && !user
+      .getPassword()
+      .equals("");
   }
-
 
 }

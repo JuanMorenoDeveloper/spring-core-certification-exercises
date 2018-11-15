@@ -45,5 +45,4 @@ public class User {
     this.idUser = idUser;
   }
 
-
 }

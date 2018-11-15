@@ -1,13 +1,6 @@
 package com.proitc.container.dependency.ioc.config.xml;
 
-import com.proitc.bean.ComplexBean;
-import com.proitc.bean.DatabaseService;
-import com.proitc.bean.LoginService;
-import com.proitc.bean.MailService;
-import com.proitc.bean.RegisterService;
-import com.proitc.bean.SuperUser;
-import com.proitc.bean.User;
-import com.proitc.bean.UserManager;
+import com.proitc.bean.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -32,6 +25,7 @@ import org.springframework.util.Assert;
 public class MainApp {
 
   private static final Logger log = LoggerFactory.getLogger(MainApp.class);
+
   public static void main(String[] args) {
 
     // Creating the application context
@@ -56,7 +50,8 @@ public class MainApp {
     //no bean id required if the type of requested object is unique
     //no casting is required
     MailService mailService = context.getBean(MailService.class);
-    log.debug("Inner bean state in mailService: " + mailService.getServiceConfig()
+    log.debug("Inner bean state in mailService: " + mailService
+      .getServiceConfig()
       .getMaxHourlyEmailLimit());
     boolean result = mailService.sendMessage("You have a new mail");
     log.debug("mail result: " + result);
@@ -70,12 +65,16 @@ public class MainApp {
     Assert.notNull(databaseService);
 
     LoginService loginService = context.getBean(LoginService.class);
-    loginService.getLogService().log("loginService.log() is called");
+    loginService
+      .getLogService()
+      .log("loginService.log() is called");
 
     RegisterService registerService = context.getBean(RegisterService.class);
     Assert.notNull(registerService);
     registerService.registerUser(user);
-    registerService.getLog().log("log interface log() is called");
+    registerService
+      .getLog()
+      .log("log interface log() is called");
 
     try {
       userManager.throwUserUpdateExceptionMethod();

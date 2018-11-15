@@ -1,7 +1,5 @@
 package com.proitc.test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.proitc.bean.DataSource;
 import com.proitc.bean.MailService;
 import org.junit.jupiter.api.Test;
@@ -14,16 +12,17 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 //How do you configure a profile. What are possible use cases where they might be useful? 
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath:application-context-profile.xml"})
+@ContextConfiguration(locations = { "classpath:application-context-profile.xml" })
 @ActiveProfiles(profiles = "development")
 //@ActiveProfiles(profiles="production") --comment out this one to get production DataSource
 public class XMLProfileIntegrationTest {
   private static final Logger log = LoggerFactory.getLogger(XMLProfileIntegrationTest.class);
-  @Autowired
-  private ApplicationContext context;
+  @Autowired private ApplicationContext context;
 
   @Test
   public void testDataSourceType() {
@@ -41,6 +40,5 @@ public class XMLProfileIntegrationTest {
     mailService.sendMessage("Test Mail Service Email XML Profile");
 
   }
-
 
 }

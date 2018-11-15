@@ -55,10 +55,10 @@
 <br/>
 <br/>
 <security:authorize access="hasRole('ROLE_ADMIN')" var="isAdmin"/>
-<font size="3" color="red"><b><c:if
-        test="${not isAdmin}">You don't have admin rights</c:if></b></font>
-<font size="3" style="color: #568C00!important;"><b><c:if
-        test="${isAdmin}">You have admin rights</c:if></b></font>
+<span style="font-size: small; color: red; "><b><c:if
+        test="${not isAdmin}">You don't have admin rights</c:if></b></span>
+<span style="   color: #568C00!important; font-size: small; "><b><c:if
+        test="${isAdmin}">You have admin rights</c:if></b></span>
 <br/>
 <security:authorize access="hasAnyRole('ROLE_ADMIN')">
     <br/>

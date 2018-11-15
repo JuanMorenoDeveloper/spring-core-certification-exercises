@@ -3,12 +3,7 @@ package com.proitc.container.dependency.ioc.javaconfig;
 import com.proitc.bean.DataSource;
 import com.proitc.bean.MailService;
 import com.proitc.util.ComplexBeanFactoryBeanImplementation;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 //Questions answered in Core Spring 4.x Study Guide 
@@ -26,10 +21,9 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 	
  */
 
-
 @Configuration
 //let the Spring Framework knows this class is used as Configuration like it is done in application-context.xml file
-@ComponentScan(basePackages = {"com.proitc.bean", "com.proitc.aspect"})
+@ComponentScan(basePackages = { "com.proitc.bean", "com.proitc.aspect" })
 //components under packages will be scanned automatically with Spring Framework
 //@ComponentScan(basePackages= {"spring.bean","other.packages"})
 @PropertySource("classpath:util.properties")
@@ -91,6 +85,5 @@ public class JavaConfig {
   public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
     return new PropertySourcesPlaceholderConfigurer();
   }
-
 
 }

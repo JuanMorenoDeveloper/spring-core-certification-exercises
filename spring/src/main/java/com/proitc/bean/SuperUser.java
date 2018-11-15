@@ -48,5 +48,4 @@ public class SuperUser {
     this.active = active;
   }
 
-
 }

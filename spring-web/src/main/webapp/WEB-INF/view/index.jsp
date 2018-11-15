@@ -17,6 +17,7 @@
 <c:url value="/xml.html" var="xmlURL"/>
 <c:url value="/admin.html" var="adminURL"/>
 <c:url value="/admin/adminsecured.html" var="adminURLSecured"/>
+<c:url value="/adminMethodSecured" var="adminMethodSecured"/>
 <c:url value="/adminMethodJSR" var="adminMethodJSR"/>
 <c:url value="/adminMethodSecuredSpEL" var="adminMethodSecuredSpEL"/>
 <c:url value="/sendJMSMessage" var="sendJMSMessage"/>
@@ -57,6 +58,8 @@
 
 <h2>REST</h2>
 <a href="${rest}">Admin REST examples</a><br/>
-
+<br>
+<h6>Session scope attribute</h6>
+${sessionScope.sessionObject}
 </body>
 </html>

@@ -12,12 +12,10 @@ public class ComplexBeanFactoryBeanImplementation implements FactoryBean<Complex
   }
 
   public Class<?> getObjectType() {
-    // TODO Auto-generated method stub
     return ComplexBean.class;
   }
 
   public boolean isSingleton() {
-    // TODO Auto-generated method stub
     return false;
   }
 

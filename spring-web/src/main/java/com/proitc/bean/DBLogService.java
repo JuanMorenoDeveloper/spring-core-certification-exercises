@@ -1,17 +1,12 @@
 package com.proitc.bean;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.PreparedStatement;
+import java.util.List;
 
 public class DBLogService implements Log {
 
@@ -28,16 +23,13 @@ public class DBLogService implements Log {
     logger.debug("DBLogService : " + log);
     final String INSERT_SQL = "INSERT INTO LOG (LOGSTRING) VALUES (?)";
     try {
-      jdbcTemplate.update(new PreparedStatementCreator() {
-        public PreparedStatement createPreparedStatement(Connection connection)
-          throws SQLException {
-          PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
-          ps.setString(1, log);
-          return ps;
-        }
+      jdbcTemplate.update(connection -> {
+        PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
+        ps.setString(1, log);
+        return ps;
       });
     } catch (Exception e) {
-      e.printStackTrace();
+      logger.error("Error writing data", e);
     }
     return false;
   }
@@ -46,13 +38,11 @@ public class DBLogService implements Log {
   public List<DBLog> queryAllDBLogs() {
     logger.debug("DBLogService : queryAllDBLogs() is called");
     final String QUERY_SQL = "SELECT * FROM LOG";
-    List<DBLog> dbLogs = this.jdbcTemplate.query(QUERY_SQL, new RowMapper<DBLog>() {
-      public DBLog mapRow(ResultSet rs, int rowNum) throws SQLException {
-        DBLog dbLog = new DBLog();
-        dbLog.setIDLOG(rs.getInt("IDLOG"));
-        dbLog.setLOGSTRING(rs.getString("LOGSTRING"));
-        return dbLog;
-      }
+    List<DBLog> dbLogs = this.jdbcTemplate.query(QUERY_SQL, (rs, rowNum) -> {
+      DBLog dbLog = new DBLog();
+      dbLog.setIDLOG(rs.getInt("IDLOG"));
+      dbLog.setLOGSTRING(rs.getString("LOGSTRING"));
+      return dbLog;
     });
     return dbLogs;
   }

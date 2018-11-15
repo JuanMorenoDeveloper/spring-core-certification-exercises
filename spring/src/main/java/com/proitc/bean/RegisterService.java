@@ -28,5 +28,4 @@ public class RegisterService {
     this.log = log;
   }
 
-
 }

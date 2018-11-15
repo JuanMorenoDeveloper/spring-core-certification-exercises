@@ -1,10 +1,5 @@
 package com.proitc.jdbc.transactions.orm;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +7,11 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 public class DBLogService implements Log {
 
@@ -29,15 +29,14 @@ public class DBLogService implements Log {
     final String INSERT_SQL = "INSERT INTO LOG (LOGSTRING) VALUES (?)";
     try {
       jdbcTemplate.update(new PreparedStatementCreator() {
-        public PreparedStatement createPreparedStatement(Connection connection)
-          throws SQLException {
+        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
           PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
           ps.setString(1, log);
           return ps;
         }
       });
     } catch (Exception e) {
-      e.printStackTrace();
+      logger.error("Error writing data", e);
     }
     return false;
   }

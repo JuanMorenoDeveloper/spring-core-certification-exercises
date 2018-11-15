@@ -15,11 +15,9 @@ public class MailService {
 
   //${...} property place holder syntax
   //#{...} SpEl syntax
-  @Value("${mail.username}")
-  private String username;
+  @Value("${mail.username}") private String username;
 
-  @Value("${mail.password}")
-  private String password;
+  @Value("${mail.password}") private String password;
 
   public boolean sendMessage(String message) {
     log.debug("MailService sendMessage(String message) is called");
@@ -83,6 +81,5 @@ public class MailService {
   public void setServiceConfig(MailServiceConfig serviceConfig) {
     this.serviceConfig = serviceConfig;
   }
-
 
 }

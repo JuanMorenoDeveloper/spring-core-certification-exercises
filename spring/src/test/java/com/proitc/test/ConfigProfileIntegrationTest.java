@@ -1,7 +1,5 @@
 package com.proitc.test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.proitc.bean.DataSource;
 import com.proitc.bean.MailService;
 import com.proitc.container.dependency.ioc.javaconfig.JavaConfig;
@@ -15,6 +13,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 //How do you configure a profile. What are possible use cases where they might be useful? 
 
 @ExtendWith(SpringExtension.class)
@@ -23,8 +23,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 //@ActiveProfiles(profiles="production") //comment out this one to get production DataSource
 public class ConfigProfileIntegrationTest {
   private static final Logger log = LoggerFactory.getLogger(ConfigProfileIntegrationTest.class);
-  @Autowired
-  private ApplicationContext context;
+  @Autowired private ApplicationContext context;
 
   @Test
   public void tessDataSourceType() {
@@ -42,6 +41,5 @@ public class ConfigProfileIntegrationTest {
     mailService.sendMessage("Test Mail Service Email XML Profile");
 
   }
-
 
 }

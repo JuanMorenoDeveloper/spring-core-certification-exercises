@@ -1,12 +1,12 @@
 package com.proitc.bean;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Repository
 public class DatabaseService {
@@ -19,7 +19,6 @@ public class DatabaseService {
     log.debug("DataSource: " + dataSource.getDriverClassName());
     log.debug("DataSource: " + dataSource.getUrl());
   }
-
 
   //javax.annotation approach
   @PostConstruct

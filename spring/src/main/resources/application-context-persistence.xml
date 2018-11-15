@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:util="http://www.springframework.org/schema/util"
-  xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-  xmlns:tx="http://www.springframework.org/schema/tx"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd
 	   					   http://www.springframework.org/schema/context
        					   http://www.springframework.org/schema/context/spring-context.xsd
@@ -33,7 +33,7 @@
 
   <!-- Persistence Context and EntityManager configuration -->
   <bean id="entityManagerFactory"
-    class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
     <property name="packagesToScan" value="com.proitc.persistence"/>
     <property name="dataSource" ref="dataSource"/>
     <property name="jpaVendorAdapter">
@@ -54,7 +54,7 @@
 
   <!-- initialize PlatformTransactionManager -->
   <bean id="transactionManager"
-    class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     <property name="dataSource" ref="dataSource"/>
   </bean>
 

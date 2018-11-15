@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginService {
 
-
   private DatabaseService databaseService;
   private LogService logService;
 
@@ -27,6 +26,5 @@ public class LoginService {
   public LogService getLogService() {
     return logService;
   }
-
 
 }

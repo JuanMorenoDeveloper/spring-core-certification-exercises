@@ -1,11 +1,7 @@
 package com.proitc.test;
 
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.proitc.persistence.User;
 import com.proitc.persistence.UserManager;
-import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,13 +14,16 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath:application-context-persistence.xml"})
+@ContextConfiguration(locations = { "classpath:application-context-persistence.xml" })
 @Transactional
 public class JPAPersistenceIntegrationTest {
   private static final Logger log = LoggerFactory.getLogger(JPAPersistenceIntegrationTest.class);
-  @Autowired
-  private ApplicationContext context;
+  @Autowired private ApplicationContext context;
 
   @BeforeAll
   public static void setUp() throws Exception {
@@ -39,12 +38,7 @@ public class JPAPersistenceIntegrationTest {
     assertThat(userManager);
     List<User> users = userManager.queryfindAllUsersJPA();
     assertThat(users);
-    for (User user : users) {
-      log.debug("IDUSER : " + user.getIdUser());
-      log.debug("USERNAME : " + user.getUsername());
-      log.debug("PASSWORD : " + user.getPassword());
-      log.debug("ACTIVE : " + user.isActive());
-    }
+    showUsers(users);
 
   }
 
@@ -78,8 +72,10 @@ public class JPAPersistenceIntegrationTest {
 
     List<User> users = userManager.queryfindAllUsersJPA();
     assertThat(users).isNotNull();
-    ;
+    showUsers(users);
+  }
 
+  private void showUsers(List<User> users) {
     for (User user : users) {
       log.debug("IDUSER : " + user.getIdUser());
       log.debug("USERNAME : " + user.getUsername());
@@ -97,13 +93,7 @@ public class JPAPersistenceIntegrationTest {
     List<User> users = userManager.queryfindAllUsersJPA();
     assertThat(users).isNotNull();
 
-    for (User user : users) {
-      log.debug("IDUSER : " + user.getIdUser());
-      log.debug("USERNAME : " + user.getUsername());
-      log.debug("PASSWORD : " + user.getPassword());
-      log.debug("ACTIVE : " + user.isActive());
-    }
+    showUsers(users);
   }
-
 
 }

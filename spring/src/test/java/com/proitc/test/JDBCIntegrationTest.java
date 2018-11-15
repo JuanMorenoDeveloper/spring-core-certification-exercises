@@ -1,14 +1,9 @@
 package com.proitc.test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.proitc.jdbc.transactions.orm.DBLog;
 import com.proitc.jdbc.transactions.orm.DBLogService;
 import com.proitc.jdbc.transactions.orm.User;
 import com.proitc.jdbc.transactions.orm.UserManager;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
@@ -20,13 +15,18 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath:application-context-jdbc.xml"})
+@ContextConfiguration(locations = { "classpath:application-context-jdbc.xml" })
 public class JDBCIntegrationTest {
 
   private static final Logger log = LoggerFactory.getLogger(JDBCIntegrationTest.class);
-  @Autowired
-  private ApplicationContext context;
+  @Autowired private ApplicationContext context;
 
   @Test
   @Transactional

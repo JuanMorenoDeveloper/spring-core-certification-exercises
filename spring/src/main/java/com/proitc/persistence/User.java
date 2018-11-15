@@ -1,12 +1,9 @@
 package com.proitc.persistence;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "USER")
@@ -17,14 +14,11 @@ public class User {
   @Column(name = "IDUSER")
   private int idUser;
 
-  @Column(name = "USERNAME")
-  private String username;
+  @Column(name = "USERNAME") private String username;
 
-  @Column(name = "PASSWORD")
-  private String password;
+  @Column(name = "PASSWORD") private String password;
 
-  @Column(name = "ACTIVE")
-  private boolean active;
+  @Column(name = "ACTIVE") private boolean active;
 
   public String getUsername() {
     return username;
@@ -59,6 +53,5 @@ public class User {
   public void setIdUser(int idUser) {
     this.idUser = idUser;
   }
-
 
 }

@@ -2,7 +2,6 @@ package com.proitc.jms;
 
 import org.springframework.jms.core.JmsTemplate;
 
-
 public class MessageReceiver {
 
   private JmsTemplate jmsTemplate;

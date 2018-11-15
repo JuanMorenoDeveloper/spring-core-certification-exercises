@@ -29,6 +29,9 @@
         <td>${userModelObject.enabled}</td>
     </tr>
 </table>
+<br>
+<h6>Session scope attribute</h6>
+${sessionScope.sessionObject}
 <br/>
 <a href="javascript:history.back()">Back</a>
 

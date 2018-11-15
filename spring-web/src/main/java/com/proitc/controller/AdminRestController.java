@@ -1,11 +1,6 @@
 package com.proitc.controller;
 
-import com.proitc.bean.DBLog;
-import com.proitc.bean.DBLogService;
-import com.proitc.bean.DBLogs;
-import com.proitc.bean.User;
-import com.proitc.bean.UserManager;
-import java.util.List;
+import com.proitc.bean.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,30 +12,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Controller
 public class AdminRestController {
   private static final Logger log = LoggerFactory.getLogger(AdminRestController.class);
-  @Autowired
-  private RestTemplate restTemplate;
+  @Autowired private RestTemplate restTemplate;
 
-  @Autowired
-  private UserManager userManager;
+  @Autowired private UserManager userManager;
 
-  @Autowired
-  private DBLogService dbLogService;
-
+  @Autowired private DBLogService dbLogService;
 
   @RequestMapping(value = "/md5/text/{text}", method = RequestMethod.GET)
   public @ResponseBody
-  String md5String(
-    @PathVariable(value = "text") String text) {
+  String md5String(@PathVariable(value = "text") String text) {
 
     // fortmat JSON http://md5.jsontest.com/?text=example_text
-    ResponseEntity<String> response = restTemplate.getForEntity(
-      "http://md5.jsontest.com/?text={text}", String.class, text);
+    ResponseEntity<String> response = restTemplate.getForEntity("http://md5.jsontest.com/?text={text}", String.class, text);
 
-    log.debug("AdminRestController md5String return response: "
-      + response);
+    log.debug("AdminRestController md5String return response: " + response);
     return response.toString();
   }
 
@@ -52,7 +42,7 @@ public class AdminRestController {
     try {
       users = userManager.queryUserWithResultSetExtractor();
     } catch (Exception e) {
-      e.printStackTrace();
+      log.error("Error reading data", e);
     }
 
     log.debug(users.toString());
@@ -67,7 +57,7 @@ public class AdminRestController {
     try {
       dbLogList = dbLogService.queryAllDBLogs();
     } catch (Exception e) {
-      e.printStackTrace();
+      log.error("Error reading data", e);
     }
     log.debug(dbLogList.toString());
     DBLogs dbLogs = new DBLogs();

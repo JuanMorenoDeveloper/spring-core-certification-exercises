@@ -1,6 +1,5 @@
 package com.proitc.bean;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,6 +44,5 @@ public class User {
   public void setIdUser(int idUser) {
     this.idUser = idUser;
   }
-
 
 }

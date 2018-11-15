@@ -1,14 +1,16 @@
 package com.proitc.jms;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.jms.JMSException;
 import javax.jms.MapMessage;
 import javax.jms.Message;
 import javax.jms.MessageListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class JMSListener2 implements MessageListener {
   private static final Logger log = LoggerFactory.getLogger(JMSListener2.class);
+
   public void onMessage(Message message) {
     log.debug(message.toString());
     log.debug("JMSListener2: Asynchronous onMessage is called");
@@ -27,10 +29,9 @@ public class JMSListener2 implements MessageListener {
       log.debug("JMSListener2 message idJMS: " + message.getStringProperty("idJMS"));
       log.debug("JMSListener2 message JMSCorrelationID: " + message.getJMSCorrelationID());
     } catch (JMSException e) {
-      e.printStackTrace();
+      log.error("Error processing message", e);
     }
 
   }
-
 
 }

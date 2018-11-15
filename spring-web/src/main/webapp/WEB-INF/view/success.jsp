@@ -11,5 +11,7 @@
 </head>
 <body>
 <h2>${message}</h2>
+<br>
+<a href="javascript:history.back()">Back</a>
 </body>
 </html>

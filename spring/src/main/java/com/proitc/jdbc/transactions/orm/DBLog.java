@@ -21,5 +21,4 @@ public class DBLog {
     LOGSTRING = lOGSTRING;
   }
 
-
 }

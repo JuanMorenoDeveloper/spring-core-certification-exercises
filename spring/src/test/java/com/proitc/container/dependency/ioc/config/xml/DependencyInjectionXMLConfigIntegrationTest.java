@@ -1,7 +1,5 @@
 package com.proitc.container.dependency.ioc.config.xml;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.proitc.bean.User;
 import com.proitc.bean.UserManager;
 import org.junit.Test;
@@ -10,9 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @ContextConfiguration("classpath:application-context.xml")
 public class DependencyInjectionXMLConfigIntegrationTest extends AbstractJUnit4SpringContextTests {
   private static final Logger log = LoggerFactory.getLogger(DependencyInjectionXMLConfigIntegrationTest.class);
+
   // With AbstractJUnit4SpringContextTests we need to use org.junit.Test JUnit 4 annotations
   // We need to add the junit-vintage-engine library dependency
   @Test

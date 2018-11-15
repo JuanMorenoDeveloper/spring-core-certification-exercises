@@ -1,9 +1,10 @@
 package com.proitc.bean;
 
-import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import javax.sql.DataSource;
 
 public class DatabaseService {
 
@@ -23,6 +24,5 @@ public class DatabaseService {
   public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;
   }
-
 
 }

@@ -1,12 +1,6 @@
 package com.proitc.container.dependency.ioc.javaconfig;
 
-import com.proitc.bean.ComplexBean;
-import com.proitc.bean.DatabaseService;
-import com.proitc.bean.LoginService;
-import com.proitc.bean.MailService;
-import com.proitc.bean.RegisterService;
-import com.proitc.bean.User;
-import com.proitc.bean.UserManager;
+import com.proitc.bean.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -45,12 +39,16 @@ public class MainApp {
     Assert.notNull(databaseService);
 
     LoginService loginService = context.getBean(LoginService.class);
-    loginService.getLogService().log("loginService.log() is called");
+    loginService
+      .getLogService()
+      .log("loginService.log() is called");
 
     RegisterService registerService = context.getBean(RegisterService.class);
     Assert.notNull(registerService);
     registerService.registerUser(user);
-    registerService.getLog().log("log interface log() is called");
+    registerService
+      .getLog()
+      .log("log interface log() is called");
 
     try {
       userManager.throwUserUpdateExceptionMethod();
@@ -68,7 +66,6 @@ public class MainApp {
     log.debug(complexBean.toString());
 
     ((ConfigurableApplicationContext) (context)).close();
-
 
   }
 

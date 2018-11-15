@@ -1,9 +1,8 @@
 package com.proitc.bean;
 
-import java.io.Serializable;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 @XmlRootElement
 public class DBLog implements Serializable {

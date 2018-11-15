@@ -21,5 +21,4 @@ public class MailServiceConfig {
     this.maxHourlyEmailLimit = maxHourlyEmailLimit;
   }
 
-
 }

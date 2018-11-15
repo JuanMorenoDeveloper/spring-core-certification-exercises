@@ -27,5 +27,7 @@
 </form>
 
 <b>Request received: </b> ${xmlModelObject}
+<br>
+<a href="javascript:history.back()">Back</a>
 </body>
 </html>

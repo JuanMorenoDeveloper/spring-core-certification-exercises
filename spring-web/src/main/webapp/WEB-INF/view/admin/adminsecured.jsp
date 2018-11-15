@@ -72,6 +72,7 @@
 <br/>
 <br/>
 <a href="${pageContext.request.contextPath}">Index</a>
+<br>
 <a href="javascript:history.back()">Back</a>
 </body>
 </html>

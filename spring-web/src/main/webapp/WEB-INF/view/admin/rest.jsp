@@ -23,8 +23,12 @@
         property="principal.username"/> with the role of: <b><security:authentication
         property="principal.authorities"/></b><br/>
     <span style="color: #568C00;"><security:authentication property="principal.username"/></span>
-    <a style="color: #568C00!important;"
-       href="<c:url value="/logout"/>">Logout</a>
+    <form action="/logout" method="post">
+        <input type="hidden"
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
+        <input type="submit" value="Logout">
+    </form>
 </security:authorize>
 <br/>
 <br/>

@@ -11,5 +11,7 @@
 </head>
 <body>
 <font color="red">Access is denied</font>
+<br>
+<a href="javascript:history.back()">Back</a>
 </body>
 </html>

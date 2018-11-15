@@ -19,13 +19,13 @@
   </bean>
 
   <!-- Message Sender custom bean referencing jmsTemplate -->
-  <bean id="messageSender" class="spring.jms.MessageSender">
+  <bean id="messageSender" class="com.proitc.jms.MessageSender">
     <property name="jmsTemplate" ref="jmsTemplate"/>
     <property name="jmsTopicTemplate" ref="jmsTopicTemplate"/>
   </bean>
 
   <!-- Message Receiver custom bean referencing jmsTemplate -->
-  <bean id="messageReceiver" class="spring.jms.MessageReceiver">
+  <bean id="messageReceiver" class="com.proitc.jms.MessageReceiver">
     <property name="jmsTemplate" ref="jmsTemplate"/>
   </bean>
 
@@ -47,9 +47,9 @@
   </bean>
 
   <!-- JMS Listener1 Definition -->
-  <bean id="jmsListener1" class="spring.jms.JMSListener1"/>
+  <bean id="jmsListener1" class="com.proitc.jms.JMSListener1"/>
   <!-- JMS Listener2 Definition -->
-  <bean id="jmsListener2" class="spring.jms.JMSListener2"/>
+  <bean id="jmsListener2" class="com.proitc.jms.JMSListener2"/>
 
   <jms:listener-container connection-factory="connectionFactory" destination-type="topic">
     <jms:listener destination="topic" ref="jmsListener1" method="receive"/>

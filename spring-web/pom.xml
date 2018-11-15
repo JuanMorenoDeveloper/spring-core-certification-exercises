@@ -33,9 +33,6 @@
     <logback.version>1.2.3</logback.version>
     <slf4j.version>1.7.25</slf4j.version>
 
-    <!-- Test -->
-    <junit.version>4.12</junit.version>
-
     <!-- JMS activemq.version -->
     <activemq.version>5.15.7</activemq.version>
 
@@ -125,13 +122,6 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>${spring-framework.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
 

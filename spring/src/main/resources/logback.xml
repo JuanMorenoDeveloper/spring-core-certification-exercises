@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <property name="rootLevel" value="INFO"/>
+  <property name="businessLevel" value="DEBUG"/>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="com.proitc" level="${businessLevel}"/>
+  <root level="${rootLevel}">
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.security.RolesAllowed;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +23,13 @@ import java.util.List;
 @Controller
 public class UserController {
   private static final Logger log = LoggerFactory.getLogger(UserController.class);
-  @Autowired private UserManager userManager;
+  private final UserManager userManager;
 
   private User user;
+
+  public UserController(UserManager userManager) {
+    this.userManager = userManager;
+  }
 
   @RequestMapping(value = "/getUserById", method = RequestMethod.POST)
   public ModelAndView getUserByID(@RequestParam(value = "IDUSER") int idUser) {

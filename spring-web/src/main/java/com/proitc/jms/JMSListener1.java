@@ -11,8 +11,8 @@ public class JMSListener1 {
   @SuppressWarnings("unchecked")
   public void receive(Object message) {
 
-    log.debug(message.toString());
-    log.debug("JMSListener1: Asynchronous onMessage is called");
+    log.info(message.toString());
+    log.info("JMSListener1: Asynchronous onMessage is called");
     final Map<String, String> mapMessage = (Map<String, String>) message;
 
     String key1 = mapMessage.get("key1");
@@ -20,10 +20,10 @@ public class JMSListener1 {
     String key3 = mapMessage.get("key3");
     String key4 = mapMessage.get("key4");
 
-    log.debug("JMSListener1 mapMessage key1: " + key1);
-    log.debug("JMSListener1 mapMessage key2: " + key2);
-    log.debug("JMSListener1 mapMessage key3: " + key3);
-    log.debug("JMSListener1 mapMessage key4: " + key4);
+    log.info("JMSListener1 mapMessage key1: " + key1);
+    log.info("JMSListener1 mapMessage key2: " + key2);
+    log.info("JMSListener1 mapMessage key3: " + key3);
+    log.info("JMSListener1 mapMessage key4: " + key4);
 
   }
 }

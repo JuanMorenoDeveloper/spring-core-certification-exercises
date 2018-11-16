@@ -12,8 +12,8 @@ public class JMSListener2 implements MessageListener {
   private static final Logger log = LoggerFactory.getLogger(JMSListener2.class);
 
   public void onMessage(Message message) {
-    log.debug(message.toString());
-    log.debug("JMSListener2: Asynchronous onMessage is called");
+    log.info(message.toString());
+    log.info("JMSListener2: Asynchronous onMessage is called");
     final MapMessage mapMessage = (MapMessage) message;
     try {
       String key1 = mapMessage.getString("key1");
@@ -21,13 +21,13 @@ public class JMSListener2 implements MessageListener {
       String key3 = mapMessage.getString("key3");
       String key4 = mapMessage.getString("key4");
 
-      log.debug("JMSListener2 mapMessage key1: " + key1);
-      log.debug("JMSListener2 mapMessage key2: " + key2);
-      log.debug("JMSListener2 mapMessage key3: " + key3);
-      log.debug("JMSListener2 mapMessage key4: " + key4);
+      log.info("JMSListener2 mapMessage key1: " + key1);
+      log.info("JMSListener2 mapMessage key2: " + key2);
+      log.info("JMSListener2 mapMessage key3: " + key3);
+      log.info("JMSListener2 mapMessage key4: " + key4);
 
-      log.debug("JMSListener2 message idJMS: " + message.getStringProperty("idJMS"));
-      log.debug("JMSListener2 message JMSCorrelationID: " + message.getJMSCorrelationID());
+      log.info("JMSListener2 message idJMS: " + message.getStringProperty("idJMS"));
+      log.info("JMSListener2 message JMSCorrelationID: " + message.getJMSCorrelationID());
     } catch (JMSException e) {
       log.error("Error processing message", e);
     }

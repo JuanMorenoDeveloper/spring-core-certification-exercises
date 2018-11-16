@@ -13,8 +13,8 @@ public class XMLController extends AbstractController {
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) {
-    log.debug("XMLController is called");
-    log.debug("XMLController request: " + request.getParameter("test"));
+    log.info("XMLController is called");
+    log.info("XMLController request: " + request.getParameter("test"));
     return new ModelAndView("xml", "xmlModelObject", request.getParameter("test"));
 
   }

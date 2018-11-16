@@ -15,17 +15,17 @@ public class UserManager {
   }
 
   public void throwUserUpdateExceptionMethod() throws Exception {
-    log.debug("UserManager throwUserUpdateExceptionMethod() is called");
+    log.info("UserManager throwUserUpdateExceptionMethod() is called");
     throw new Exception();
   }
 
   public boolean throwNotUserUpdateExceptionMethod() throws Exception {
-    log.debug("UserManager throwNotUserUpdateExceptionMethod() is called");
+    log.info("UserManager throwNotUserUpdateExceptionMethod() is called");
     return true;
   }
 
   public boolean deleteUser(User user) {
-    log.debug("UserManager deleteUser(User user) is called");
+    log.info("UserManager deleteUser(User user) is called");
     return false;
   }
 

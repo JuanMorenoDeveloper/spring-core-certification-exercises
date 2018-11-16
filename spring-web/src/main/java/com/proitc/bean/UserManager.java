@@ -30,14 +30,14 @@ public class UserManager {
 
   //queryForObject example
   public User queryUserWithInternalRowMapper(int idUser) throws Exception {
-    log.debug("UserManager queryUserWithInternalRowMapper called");
+    log.info("UserManager queryUserWithInternalRowMapper called");
     final String QUERY_SQL = "SELECT * FROM USER WHERE IDUSER=?";
     return jdbcTemplate.queryForObject(QUERY_SQL, new Object[] { idUser }, new UserMapper());
   }
 
   //update UPDATE example
   public boolean updateUserName(User u, String newName) {
-    log.debug("UserManager updateUserName called");
+    log.info("UserManager updateUserName called");
     final String UPDATE_SQL = "UPDATE USER SET USERNAME = ? WHERE USERNAME = ?";
     int result = jdbcTemplate.update(UPDATE_SQL, new Object[] { newName, u.getUsername() });
     if (result > 0) {
@@ -50,7 +50,7 @@ public class UserManager {
   //update INSERT example
   @Transactional(propagation = Propagation.REQUIRES_NEW, timeout = 50)
   public boolean addUSER(User user) {
-    log.debug("UserManager addUSER called");
+    log.info("UserManager addUSER called");
     final String INSERT_SQL = "INSERT INTO USER (USERNAME,PASSWORD,ENABLED) VALUES (?,?,?)";
     int result = jdbcTemplate.update(INSERT_SQL, new Object[] { user.getUsername(), user.getPassword(), user.isEnabled() });
     if (result > 0) {
@@ -62,13 +62,13 @@ public class UserManager {
 
   //queryForObject(QUERY_SQL, Integer.class) Example
   public int countAllUsers() {
-    log.debug("UserManager countAllUsers called");
+    log.info("UserManager countAllUsers called");
     final String QUERY_SQL = "SELECT COUNT(*) FROM USER";
     return jdbcTemplate.queryForObject(QUERY_SQL, Integer.class);
   }
 
   public void logAllUserInfo() {
-    log.debug("UserManager logAllUserInfo called");
+    log.info("UserManager logAllUserInfo called");
     final String QUERY_SQL = "SELECT * FROM USER";
     jdbcTemplate.query(QUERY_SQL, new UserProcessor());
   }
@@ -76,7 +76,7 @@ public class UserManager {
   //override class level @Transactional
   @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
   public List<User> queryUserWithResultSetExtractor() {
-    log.debug("UserManager queryUserWithResultSetExtractor called");
+    log.info("UserManager queryUserWithResultSetExtractor called");
     final String QUERY_SQL = "SELECT * FROM USER";
     return jdbcTemplate.query(QUERY_SQL, new UserResultSetExtractor());
   }
@@ -84,14 +84,14 @@ public class UserManager {
   //How does the JdbcTemplate support generic queries? How does it return objects and lists/maps of objects?
   //queryForList
   public List<Map<String, Object>> queryForListOfUsers() {
-    log.debug("UserManager queryForListListOfUsers called");
+    log.info("UserManager queryForListListOfUsers called");
     final String QUERY_SQL = "SELECT * FROM USER";
     return jdbcTemplate.queryForList(QUERY_SQL);
   }
 
   //queryForMap
   public Map<String, Object> queryForMapUser(String idUser) {
-    log.debug("UserManager queryForMapUser called");
+    log.info("UserManager queryForMapUser called");
     final String QUERY_SQL = "SELECT * FROM USER WHERE IDUSER= ?";
     return jdbcTemplate.queryForMap(QUERY_SQL, idUser);
   }
@@ -146,10 +146,10 @@ public class UserManager {
 
     public void processRow(ResultSet resultSet) throws SQLException {
       while (resultSet.next()) {
-        log.debug("IDUSER: " + resultSet.getString("IDUSER"));
-        log.debug("USERNAME: " + resultSet.getString("USERNAME"));
-        log.debug("PASSWORD: " + resultSet.getString("PASSWORD"));
-        log.debug("ENABLED: " + resultSet.getString("ENABLED"));
+        log.info("IDUSER: " + resultSet.getString("IDUSER"));
+        log.info("USERNAME: " + resultSet.getString("USERNAME"));
+        log.info("PASSWORD: " + resultSet.getString("PASSWORD"));
+        log.info("ENABLED: " + resultSet.getString("ENABLED"));
       }
     }
   }

@@ -21,7 +21,7 @@ public class UserManager {
 
   public List<User> queryfindAllUsersJPA() {
 
-    log.debug("UserManager queryfindAllUsersJPA is called");
+    log.info("UserManager queryfindAllUsersJPA is called");
     String qlString = "from User";
     TypedQuery<User> query = entityManager.createQuery(qlString, User.class);
     return query.getResultList();
@@ -29,7 +29,7 @@ public class UserManager {
 
   public int queryCountAllUsersJPA() {
 
-    log.debug("UserManager queryCountAllUsersJPA is called");
+    log.info("UserManager queryCountAllUsersJPA is called");
     String qlString = "select count(u.idUser) from User u";
     TypedQuery<Long> query = entityManager.createQuery(qlString, Long.class);
     return query
@@ -38,14 +38,14 @@ public class UserManager {
   }
 
   public User queryFindByIdUser(int idUser) {
-    log.debug("UserManager queryFindByIdUser is called");
+    log.info("UserManager queryFindByIdUser is called");
     return entityManager.find(User.class, idUser);
   }
 
   @Transactional
   public boolean insertUserByIdUser(String username, String password, boolean active) {
 
-    log.debug("UserManager queryFindByIdUser is called");
+    log.info("UserManager queryFindByIdUser is called");
     String qlString = "insert into user (username,password,active) values (?,?,?)";
     entityManager.joinTransaction();
     Query query = entityManager.createNativeQuery(qlString);
@@ -59,7 +59,7 @@ public class UserManager {
   @Transactional
   public boolean deleteUserByIdUser(int idUser) {
 
-    log.debug("UserManager insertUserByIdUser is called");
+    log.info("UserManager insertUserByIdUser is called");
     String qlString = "delete from user where iduser=?";
     entityManager.joinTransaction();
     Query query = entityManager.createNativeQuery(qlString);

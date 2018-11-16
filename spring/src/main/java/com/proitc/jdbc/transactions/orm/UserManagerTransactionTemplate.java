@@ -24,14 +24,14 @@ public class UserManagerTransactionTemplate {
     transactionTemplate.execute(new TransactionCallbackWithoutResult() {
       @Override
       protected void doInTransactionWithoutResult(TransactionStatus status) {
-        log.debug("status.isNewTransaction(): " + status.isNewTransaction());
+        log.info("status.isNewTransaction(): " + status.isNewTransaction());
         User user = new User();
         user.setUsername("testTransactionTemplate");
         user.setPassword("111");
         user.setActive(true);
 
         userManager.addUSER(user);
-        log.debug("status.isCompleted(): " + status.isCompleted());
+        log.info("status.isCompleted(): " + status.isCompleted());
         userManager.logAllUserInfo();
 
       }

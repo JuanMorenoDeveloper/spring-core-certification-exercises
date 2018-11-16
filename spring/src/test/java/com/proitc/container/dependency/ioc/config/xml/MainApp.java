@@ -42,23 +42,23 @@ public class MainApp {
 
     User user = new User();
     user.setUsername("Tom");
-    log.debug("Previous username:" + user.getUsername());
+    log.info("Previous username:" + user.getUsername());
 
     User userUpdated = userManager.updateUserName(user, "John");
-    log.debug("New username:" + userUpdated.getUsername());
+    log.info("New username:" + userUpdated.getUsername());
 
     //no bean id required if the type of requested object is unique
     //no casting is required
     MailService mailService = context.getBean(MailService.class);
-    log.debug("Inner bean state in mailService: " + mailService
+    log.info("Inner bean state in mailService: " + mailService
       .getServiceConfig()
       .getMaxHourlyEmailLimit());
     boolean result = mailService.sendMessage("You have a new mail");
-    log.debug("mail result: " + result);
+    log.info("mail result: " + result);
 
     //Properties file output
-    log.debug("mail.username: " + mailService.getUsername());
-    log.debug("mail.password: " + mailService.getPassword());
+    log.info("mail.username: " + mailService.getUsername());
+    log.info("mail.password: " + mailService.getPassword());
 
     //no casting is required with the following approach
     DatabaseService databaseService = context.getBean("databaseService", DatabaseService.class);
@@ -89,17 +89,17 @@ public class MainApp {
 
     // Bean inheritance example
     User testUser = context.getBean("testUser", User.class);
-    log.debug("Bean inheritance testUser username: " + testUser.getUsername());
-    log.debug("Bean inheritance testUser password: " + testUser.getPassword());
-    log.debug("Bean inheritance testUser active: " + testUser.isActive());
+    log.info("Bean inheritance testUser username: " + testUser.getUsername());
+    log.info("Bean inheritance testUser password: " + testUser.getPassword());
+    log.info("Bean inheritance testUser active: " + testUser.isActive());
 
     SuperUser superUser = context.getBean("superUser", SuperUser.class);
-    log.debug("Bean inheritance superUser systemPassword: " + superUser.getSystemPassword());
-    log.debug("Bean inheritance superUser contact: " + superUser.getContact());
+    log.info("Bean inheritance superUser systemPassword: " + superUser.getSystemPassword());
+    log.info("Bean inheritance superUser contact: " + superUser.getContact());
 
     ComplexBean complexBean = context.getBean(ComplexBean.class);
     Assert.notNull(complexBean);
-    log.debug(complexBean.toString());
+    log.info(complexBean.toString());
 
     //close the application and release all sources and locks
     ((ConfigurableApplicationContext) (context)).close();

@@ -15,23 +15,23 @@ public class DatabaseService {
 
   @Autowired
   public DatabaseService(DataSource dataSource) {
-    log.debug("Datasource through Constructor injection in DatabaseService");
-    log.debug("DataSource: " + dataSource.getDriverClassName());
-    log.debug("DataSource: " + dataSource.getUrl());
+    log.info("Datasource through Constructor injection in DatabaseService");
+    log.info("DataSource: " + dataSource.getDriverClassName());
+    log.info("DataSource: " + dataSource.getUrl());
   }
 
   //javax.annotation approach
   @PostConstruct
   public void init() {
     //initialization work
-    log.debug("@PostConstruct :" + "is called");
+    log.info("@PostConstruct :" + "is called");
   }
 
   //javax.annotation approach
   @PreDestroy
   public void destroy() {
     //destruction work
-    log.debug("@PreDestroy :" + "is called");
+    log.info("@PreDestroy :" + "is called");
   }
 
 }

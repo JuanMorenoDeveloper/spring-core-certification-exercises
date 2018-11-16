@@ -12,7 +12,7 @@ public class DatabaseService {
   private JdbcTemplate jdbcTemplate;
 
   public DatabaseService(DataSource dataSource) {
-    log.debug("Database Service: " + dataSource);
+    log.info("Database Service: " + dataSource);
     //Setting data source through constructor
     this.setJdbcTemplate(new JdbcTemplate(dataSource));
   }

@@ -16,7 +16,7 @@ public class RegisterService {
   private Log log;
 
   public boolean registerUser(User user) {
-    logger.debug("RegisterService registerUser(User u) is called");
+    logger.info("RegisterService registerUser(User u) is called");
     return true;
   }
 

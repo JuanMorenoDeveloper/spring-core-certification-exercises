@@ -25,8 +25,8 @@ public class MessageController {
   @RequestMapping(value = "/sendJMSMessage", method = RequestMethod.GET)
   public ModelAndView sendJMSMessage() {
 
-    log.debug("MessageController sendJMSMessage is called with ADMIN ROLE");
-    Map<String, String> messageMap = new HashMap<String, String>();
+    log.info("MessageController sendJMSMessage is called with ADMIN ROLE");
+    Map<String, String> messageMap = new HashMap<>();
     messageMap.put("key1", "tunatore@gmail.com");
     messageMap.put("key2", "tunatore@outlook.com");
     messageMap.put("key3", "spring framework");
@@ -41,8 +41,8 @@ public class MessageController {
   @RequestMapping(value = "/sendJMSMessageAsync", method = RequestMethod.GET)
   public ModelAndView sendJMSMessageAsync() {
 
-    log.debug("MessageController sendJMSMessageAsync is called with ADMIN ROLE");
-    Map<String, String> messageMap2 = new HashMap<String, String>();
+    log.info("MessageController sendJMSMessageAsync is called with ADMIN ROLE");
+    Map<String, String> messageMap2 = new HashMap<>();
     messageMap2.put("key1", "topic tunatore@gmail.com");
     messageMap2.put("key2", "topic tunatore@outlook.com");
     messageMap2.put("key3", "topic spring framework");
@@ -57,8 +57,8 @@ public class MessageController {
   @RequestMapping(value = "/sendJMSMessageCallback", method = RequestMethod.GET)
   public ModelAndView sendJMSMessageCallback() {
 
-    log.debug("MessageController sendJMSMessageCallback is called with ADMIN ROLE");
-    messageSender.SendTopicWithCallBack();
+    log.info("MessageController sendJMSMessageCallback is called with ADMIN ROLE");
+    messageSender.sendTopicWithCallBack();
     return new ModelAndView("/admin/adminsecured");
 
   }
@@ -66,13 +66,9 @@ public class MessageController {
   @RolesAllowed(value = { "ROLE_ADMIN" })
   @RequestMapping(value = "/getJMSMessage", method = RequestMethod.GET)
   public ModelAndView getJMSMessage() {
-    log.debug("Message Controller getJMSMessage synchronous " + messageReceiver
-      .getJmsTemplate()
-      .receiveAndConvert("queue"));
-    log.debug(messageReceiver
-      .getJmsTemplate()
-      .receiveAndConvert("queue")
-      .toString());
+    log.info("Message Controller getJMSMessage synchronous " + messageReceiver
+      .getQueueTemplate()
+      .receiveAndConvert("queue"));//Block until received data
     return new ModelAndView("/admin/adminsecured");
   }
 }

@@ -20,7 +20,7 @@ public class DBLogService implements Log {
   //JdbcTemplate INSERT example
   @Transactional(timeout = 60)
   public boolean log(final String log) {
-    logger.debug("DBLogService : " + log);
+    logger.info("DBLogService : " + log);
     final String INSERT_SQL = "INSERT INTO LOG (LOGSTRING) VALUES (?)";
     try {
       jdbcTemplate.update(connection -> {
@@ -36,7 +36,7 @@ public class DBLogService implements Log {
 
   //JdbcTemplate query with in method RowMapper example
   public List<DBLog> queryAllDBLogs() {
-    logger.debug("DBLogService : queryAllDBLogs() is called");
+    logger.info("DBLogService : queryAllDBLogs() is called");
     final String QUERY_SQL = "SELECT * FROM LOG";
     List<DBLog> dbLogs = this.jdbcTemplate.query(QUERY_SQL, (rs, rowNum) -> {
       DBLog dbLog = new DBLog();

@@ -30,7 +30,7 @@ public class AdminRestController {
     // fortmat JSON http://md5.jsontest.com/?text=example_text
     ResponseEntity<String> response = restTemplate.getForEntity("http://md5.jsontest.com/?text={text}", String.class, text);
 
-    log.debug("AdminRestController md5String return response: " + response);
+    log.info("AdminRestController md5String return response: " + response);
     return response.toString();
   }
 
@@ -45,7 +45,7 @@ public class AdminRestController {
       log.error("Error reading data", e);
     }
 
-    log.debug(users.toString());
+    log.info(users.toString());
     return users;
   }
 
@@ -59,7 +59,7 @@ public class AdminRestController {
     } catch (Exception e) {
       log.error("Error reading data", e);
     }
-    log.debug(dbLogList.toString());
+    log.info(dbLogList.toString());
     DBLogs dbLogs = new DBLogs();
     dbLogs.setLogList(dbLogList);
     return dbLogs;

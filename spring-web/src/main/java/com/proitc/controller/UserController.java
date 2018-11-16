@@ -33,7 +33,7 @@ public class UserController {
 
   @RequestMapping(value = "/getUserById", method = RequestMethod.POST)
   public ModelAndView getUserByID(@RequestParam(value = "IDUSER") int idUser) {
-    log.debug("UserController getUserById is called");
+    log.info("UserController getUserById is called");
     user = null;
     try {
       user = userManager.queryUserWithInternalRowMapper(idUser);
@@ -49,8 +49,8 @@ public class UserController {
 
   @RequestMapping(value = "/getUserByIdPathVariable/IDUSER/{idUser}", method = RequestMethod.GET)
   public ModelAndView getUserByIDPathVariable(@PathVariable(value = "idUser") int idUser) {
-    log.debug("UserController getUserByIDPathVariable is called");
-    log.debug("UserController getUserByIDPathVariable idUser: " + idUser);
+    log.info("UserController getUserByIDPathVariable is called");
+    log.info("UserController getUserByIDPathVariable idUser: " + idUser);
     user = null;
     try {
       user = userManager.queryUserWithInternalRowMapper(idUser);
@@ -66,7 +66,7 @@ public class UserController {
 
   @RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
   public String queryAllUsers(Model model) {
-    log.debug("UserController queryAllUsers is called");
+    log.info("UserController queryAllUsers is called");
 
     List<User> users = new ArrayList<>();
     try {
@@ -85,8 +85,8 @@ public class UserController {
 
   @RequestMapping(value = "/testUserSessionAttribute/IDUSER/{idUser}", method = RequestMethod.GET)
   public ModelAndView testUserSessionAttribute(@PathVariable(value = "idUser") int idUser, HttpSession session) {
-    log.debug("UserController testUserSessionAttribute is called");
-    log.debug("UserController testUserSessionAttribute sessionObject: " + session.getAttribute("sessionObject"));
+    log.info("UserController testUserSessionAttribute is called");
+    log.info("UserController testUserSessionAttribute sessionObject: " + session.getAttribute("sessionObject"));
     user = null;
     try {
       user = userManager.queryUserWithInternalRowMapper(idUser);
@@ -104,7 +104,7 @@ public class UserController {
   @RolesAllowed(value = { "ROLE_ADMIN" })
   @RequestMapping(value = "/adminMethodJSR", method = RequestMethod.GET)
   public ModelAndView adminMethodJSR() {
-    log.debug("UserController adminMethodJSR is called with ADMIN ROLE");
+    log.info("UserController adminMethodJSR is called with ADMIN ROLE");
     return new ModelAndView("/admin/adminsecured");
 
   }
@@ -113,14 +113,14 @@ public class UserController {
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @RequestMapping(value = "/adminMethodSecuredSpEL", method = RequestMethod.GET)
   public ModelAndView preAuthorize() {
-    log.debug("UserController preAuthorize is called for ROLE_ADMIN");
+    log.info("UserController preAuthorize is called for ROLE_ADMIN");
     return new ModelAndView("/admin/adminsecured");
   }
 
   @Secured(value = { "ROLE_ADMIN" })
   @RequestMapping(value = "/adminMethodSecured", method = RequestMethod.GET)
   public ModelAndView adminMethodSecured() {
-    log.debug("UserController adminMethodSecured is called with ADMIN ROLE");
+    log.info("UserController adminMethodSecured is called with ADMIN ROLE");
     return new ModelAndView("/admin/adminsecured");
 
   }

@@ -4,13 +4,13 @@ import org.springframework.jms.core.JmsTemplate;
 
 public class MessageReceiver {
 
-  private JmsTemplate jmsTemplate;
+  private JmsTemplate queueTemplate;
 
-  public JmsTemplate getJmsTemplate() {
-    return jmsTemplate;
+  public JmsTemplate getQueueTemplate() {
+    return queueTemplate;
   }
 
-  public void setJmsTemplate(JmsTemplate jmsTemplate) {
-    this.jmsTemplate = jmsTemplate;
+  public void setQueueTemplate(JmsTemplate queueTemplate) {
+    this.queueTemplate = queueTemplate;
   }
 }

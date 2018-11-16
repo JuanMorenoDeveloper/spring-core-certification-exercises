@@ -20,7 +20,7 @@ public class MailService {
   @Value("${mail.password}") private String password;
 
   public boolean sendMessage(String message) {
-    log.debug("MailService sendMessage(String message) is called");
+    log.info("MailService sendMessage(String message) is called");
     return logService.log("MailService content: " + message);
   }
 
@@ -54,7 +54,7 @@ public class MailService {
 
   @Autowired
   public void setLogService(LogService logService) {
-    log.debug("through setter injection in MailService");
+    log.info("through setter injection in MailService");
     this.logService = logService;
   }
 

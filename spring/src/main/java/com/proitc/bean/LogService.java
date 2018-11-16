@@ -9,7 +9,7 @@ public class LogService implements Log {
   private static final Logger logger = LoggerFactory.getLogger(LogService.class);
 
   public boolean log(String log) {
-    logger.debug("LogService : " + log);
+    logger.info("LogService : " + log);
     return true;
   }
 

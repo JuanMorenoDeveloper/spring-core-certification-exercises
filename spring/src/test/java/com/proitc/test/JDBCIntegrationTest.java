@@ -43,8 +43,8 @@ public class JDBCIntegrationTest {
     List<DBLog> dbLogs = dbLogService.queryAllDBLogs();
     for (Iterator<DBLog> iterator = dbLogs.iterator(); iterator.hasNext(); ) {
       DBLog dbLog = iterator.next();
-      log.debug("IDLOG: " + dbLog.getIDLOG());
-      log.debug("LOGSTRING: " + dbLog.getLOGSTRING());
+      log.info("IDLOG: " + dbLog.getIDLOG());
+      log.info("LOGSTRING: " + dbLog.getLOGSTRING());
     }
 
   }
@@ -56,7 +56,7 @@ public class JDBCIntegrationTest {
     assertThat(userManager).isNotNull();
     User u = userManager.queryUserWithInternalRowMapper(2);
     assertThat(u).isNotNull();
-    log.debug("testUserManagerQueryUserWithInternalRowMapper: " + u.getUsername());
+    log.info("testUserManagerQueryUserWithInternalRowMapper: " + u.getUsername());
   }
 
   @Test
@@ -89,7 +89,7 @@ public class JDBCIntegrationTest {
 
     UserManager userManager = context.getBean(UserManager.class);
     assertThat(userManager).isNotNull();
-    log.debug(String.valueOf(userManager.countAllUsers()));
+    log.info(String.valueOf(userManager.countAllUsers()));
 
   }
 
@@ -109,8 +109,8 @@ public class JDBCIntegrationTest {
     assertThat(userManager).isNotNull();
     List<User> testUsers = userManager.queryUserWithResultSetExtractor();
     for (User u : testUsers) {
-      log.debug("Test users");
-      log.debug("testUserManagerQueryUserWithResultSetExtractor : " + u.getUsername());
+      log.info("Test users");
+      log.info("testUserManagerQueryUserWithResultSetExtractor : " + u.getUsername());
 
     }
 
@@ -118,26 +118,26 @@ public class JDBCIntegrationTest {
 
   @Test
   public void testQueryForListOfUsers() {
-    log.debug("testQueryForListOfUsers");
+    log.info("testQueryForListOfUsers");
     UserManager userManager = context.getBean(UserManager.class);
     assertThat(userManager).isNotNull();
     List<Map<String, Object>> users = userManager.queryForListOfUsers();
-    log.debug(users.toString());
+    log.info(users.toString());
     for (Map<String, Object> row : users) {
-      log.debug("MAP VALUE: " + row.get("IDUSER"));
-      log.debug("MAP VALUE: " + row.get("USERNAME"));
+      log.info("MAP VALUE: " + row.get("IDUSER"));
+      log.info("MAP VALUE: " + row.get("USERNAME"));
     }
   }
 
   @Test
   public void testQueryForMapUser() {
-    log.debug("testQueryForMapUser");
+    log.info("testQueryForMapUser");
     UserManager userManager = context.getBean(UserManager.class);
     assertThat(userManager).isNotNull();
     Map<String, Object> user = userManager.queryForMapUser("2");
-    log.debug(user.toString());
-    log.debug("MAP VALUE: " + user.get("IDUSER"));
-    log.debug("MAP VALUE: " + user.get("USERNAME"));
+    log.info(user.toString());
+    log.info("MAP VALUE: " + user.get("IDUSER"));
+    log.info("MAP VALUE: " + user.get("USERNAME"));
 
   }
 }

@@ -21,9 +21,9 @@ public class RegisterController {
   @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
   public ModelAndView register(@RequestParam(required = false, defaultValue = "") String email, @RequestParam(required = false, defaultValue = "") String password) {
 
-    log.debug("RegisterController register is called");
-    log.debug("RegisterController register email: " + email);
-    log.debug("RegisterController register email: " + password);
+    log.info("RegisterController register is called");
+    log.info("RegisterController register email: " + email);
+    log.info("RegisterController register email: " + password);
 
     User user = new User();
     user.setUsername(email);

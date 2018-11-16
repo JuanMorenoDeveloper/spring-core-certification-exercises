@@ -12,7 +12,7 @@ public class DBLogService implements Log {
   private static final Logger logger = LoggerFactory.getLogger(DBLogService.class);
 
   public boolean log(String log) {
-    logger.debug("DBLogService : " + log);
+    logger.info("DBLogService : " + log);
     return false;
   }
 

@@ -7,7 +7,7 @@ public class RegisterService {
   private static final Logger log = LoggerFactory.getLogger(RegisterService.class);
 
   public boolean registerUser(User user) {
-    log.debug("RegisterService registerUser(User u) is called");
+    log.info("RegisterService registerUser(User u) is called");
     return !user
       .getUsername()
       .equals("") && !user

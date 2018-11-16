@@ -33,7 +33,7 @@ public class JPAPersistenceIntegrationTest {
   @Test
   public void testQueryfindAllUsersJPA() {
 
-    log.debug("testQueryfindAllUsersJPA is called");
+    log.info("testQueryfindAllUsersJPA is called");
     UserManager userManager = context.getBean(UserManager.class);
     assertThat(userManager);
     List<User> users = userManager.queryfindAllUsersJPA();
@@ -45,27 +45,27 @@ public class JPAPersistenceIntegrationTest {
   @Test
   public void testQueryCountTAllUsersJPA() {
 
-    log.debug("testQueryCountTAllUsersJPA is called");
+    log.info("testQueryCountTAllUsersJPA is called");
     UserManager userManager = context.getBean(UserManager.class);
     assertThat(userManager).isNotNull();
     int count = userManager.queryCountAllUsersJPA();
-    log.debug("Users count: " + count);
+    log.info("Users count: " + count);
 
   }
 
   @Test
   public void testFindByIdUser() {
 
-    log.debug("testFindByIdUSer is called");
+    log.info("testFindByIdUSer is called");
     UserManager userManager = context.getBean(UserManager.class);
     assertThat(userManager).isNotNull();
     User user = userManager.queryFindByIdUser(2);
-    log.debug("User: " + user.getUsername());
+    log.info("User: " + user.getUsername());
   }
 
   @Test
   public void testInsertUserByIdUser() {
-    log.debug("testInsertUserByIdUser is called");
+    log.info("testInsertUserByIdUser is called");
     UserManager userManager = context.getBean(UserManager.class);
     assertThat(userManager).isNotNull();
     userManager.insertUserByIdUser("testInsert@outlook.com", "123456", true);
@@ -77,16 +77,16 @@ public class JPAPersistenceIntegrationTest {
 
   private void showUsers(List<User> users) {
     for (User user : users) {
-      log.debug("IDUSER : " + user.getIdUser());
-      log.debug("USERNAME : " + user.getUsername());
-      log.debug("PASSWORD : " + user.getPassword());
-      log.debug("ACTIVE : " + user.isActive());
+      log.info("IDUSER : " + user.getIdUser());
+      log.info("USERNAME : " + user.getUsername());
+      log.info("PASSWORD : " + user.getPassword());
+      log.info("ACTIVE : " + user.isActive());
     }
   }
 
   @Test
   public void testDeleteUserByIdUser() {
-    log.debug("testDeleteUserByIdUser is called");
+    log.info("testDeleteUserByIdUser is called");
     UserManager userManager = context.getBean(UserManager.class);
     assertThat(userManager).isNotNull();
     userManager.deleteUserByIdUser(2);

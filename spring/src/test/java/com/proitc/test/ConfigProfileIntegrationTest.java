@@ -31,9 +31,9 @@ public class ConfigProfileIntegrationTest {
     //We will get TEST Database using profile
     DataSource dataSource = context.getBean(DataSource.class);
     assertThat(dataSource).isNotNull();
-    log.debug("URL DataSource " + dataSource.getUrl());
-    log.debug("Username DataSource " + dataSource.getUsername());
-    log.debug("Password DataSource " + dataSource.getPassword());
+    log.info("URL DataSource " + dataSource.getUrl());
+    log.info("Username DataSource " + dataSource.getUsername());
+    log.info("Password DataSource " + dataSource.getPassword());
 
     //Regular beans in XML Config
     MailService mailService = context.getBean(MailService.class);

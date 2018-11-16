@@ -21,7 +21,7 @@ public class RestControllerExample {
     //JSON http://echo.jsontest.com/person1/tunatore/person2/testuser
     ResponseEntity<String> response = restTemplate.getForEntity("http://echo.jsontest.com/person1/{person1}/person2/{person2}", String.class, person1, person2);
 
-    log.debug("RestControllerExample echoPersons return response: " + response);
+    log.info("RestControllerExample echoPersons return response: " + response);
     return response.toString();
   }
 
@@ -29,7 +29,7 @@ public class RestControllerExample {
   public String responseStatusTest() throws Exception {
 
     //responseStatusTest
-    log.debug("RestControllerExample responseStatusTest");
+    log.info("RestControllerExample responseStatusTest");
     throw new Exception("responseStatusTest exception");
   }
 

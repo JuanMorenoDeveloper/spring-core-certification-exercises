@@ -16,7 +16,7 @@ public class User {
   }
 
   public void setUsername(String username) {
-    log.debug("User setUsername is called");
+    log.info("User setUsername is called");
     this.username = username;
   }
 
@@ -25,7 +25,7 @@ public class User {
   }
 
   public void setPassword(String password) {
-    log.debug("User setPassword is called");
+    log.info("User setPassword is called");
     this.password = password;
   }
 

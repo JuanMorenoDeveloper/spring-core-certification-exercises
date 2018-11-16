@@ -13,20 +13,27 @@
   </bean>
 
   <!-- JmsTemplate configuration -->
-  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+  <bean id="queueTemplate" class="org.springframework.jms.core.JmsTemplate">
     <property name="connectionFactory" ref="connectionFactory"/>
     <property name="defaultDestination" ref="defaultDestination"/>
   </bean>
 
-  <!-- Message Sender custom bean referencing jmsTemplate -->
-  <bean id="messageSender" class="com.proitc.jms.MessageSender">
-    <property name="jmsTemplate" ref="jmsTemplate"/>
-    <property name="jmsTopicTemplate" ref="jmsTopicTemplate"/>
+  <!-- TopicTemplate configuration -->
+  <bean id="topicTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <property name="connectionFactory" ref="connectionFactory"/>
+    <property name="pubSubDomain" value="true"/>
+    <property name="defaultDestination" ref="destinationTopic"/>
   </bean>
 
-  <!-- Message Receiver custom bean referencing jmsTemplate -->
+  <!-- Message Sender custom bean referencing queueTemplate -->
+  <bean id="messageSender" class="com.proitc.jms.MessageSender">
+    <property name="queueTemplate" ref="queueTemplate"/>
+    <property name="topicTemplate" ref="topicTemplate"/>
+  </bean>
+
+  <!-- Message Receiver custom bean referencing queueTemplate -->
   <bean id="messageReceiver" class="com.proitc.jms.MessageReceiver">
-    <property name="jmsTemplate" ref="jmsTemplate"/>
+    <property name="queueTemplate" ref="queueTemplate"/>
   </bean>
 
   <!-- destination Queue configuration -->
@@ -39,22 +46,14 @@
     <constructor-arg value="topic"/>
   </bean>
 
-  <!-- JmsTopicTemplate configuration -->
-  <bean id="jmsTopicTemplate" class="org.springframework.jms.core.JmsTemplate">
-    <property name="connectionFactory" ref="connectionFactory"/>
-    <property name="pubSubDomain" value="true"/>
-    <property name="defaultDestination" ref="destinationTopic"/>
-  </bean>
-
   <!-- JMS Listener1 Definition -->
-  <bean id="jmsListener1" class="com.proitc.jms.JMSListener1"/>
+  <bean id="jmsListener1" class="com.proitc.jms.JMSListener1"/> <!--MDP-->
   <!-- JMS Listener2 Definition -->
-  <bean id="jmsListener2" class="com.proitc.jms.JMSListener2"/>
+  <bean id="jmsListener2" class="com.proitc.jms.JMSListener2"/> <!--Listener-->
 
   <jms:listener-container connection-factory="connectionFactory" destination-type="topic">
     <jms:listener destination="topic" ref="jmsListener1" method="receive"/>
     <jms:listener destination="topic" ref="jmsListener2"/>
   </jms:listener-container>
-
 
 </beans>

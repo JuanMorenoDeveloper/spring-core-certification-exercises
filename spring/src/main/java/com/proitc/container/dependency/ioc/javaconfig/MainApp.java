@@ -20,19 +20,19 @@ public class MainApp {
     UserManager userManager = context.getBean(UserManager.class);
     User user = new User();
     user.setUsername("Tom");
-    log.debug("Previous username:" + user.getUsername());
+    log.info("Previous username:" + user.getUsername());
     User userUpdated = userManager.updateUserName(user, "John");
-    log.debug("New username:" + userUpdated.getUsername());
+    log.info("New username:" + userUpdated.getUsername());
 
     //Using Bean
     MailService mailService = context.getBean(MailService.class);
     //MailService mailService = (MailService)context.getBean("mailService"); //default bean ID same as method name
     boolean result = mailService.sendMessage("You have a new mail");
-    log.debug("mail result: " + result);
+    log.info("mail result: " + result);
 
     //Properties file output
-    log.debug("mail.username: " + mailService.getUsername());
-    log.debug("mail.password: " + mailService.getPassword());
+    log.info("mail.username: " + mailService.getUsername());
+    log.info("mail.password: " + mailService.getPassword());
 
     //Autowired through constructor
     DatabaseService databaseService = context.getBean(DatabaseService.class);
@@ -63,7 +63,7 @@ public class MainApp {
 
     ComplexBean complexBean = context.getBean(ComplexBean.class);
     Assert.notNull(complexBean);
-    log.debug(complexBean.toString());
+    log.info(complexBean.toString());
 
     ((ConfigurableApplicationContext) (context)).close();
 

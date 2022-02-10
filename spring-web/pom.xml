@@ -21,7 +21,7 @@
     <servlet.version>4.0.1</servlet.version>
 
     <!-- Spring -->
-    <spring-framework.version>5.2.3.RELEASE</spring-framework.version>
+    <spring-framework.version>5.2.4.RELEASE</spring-framework.version>
 
     <!-- Spring Security -->
     <spring-security.version>5.2.10.RELEASE</spring-security.version>
